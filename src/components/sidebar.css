@@ -1,0 +1,95 @@
+.checkout__sidebar__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 95vh;
+    padding: 2% 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.checkout__sidebar__content__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+.checkout__sidebar__logo__wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0rem;
+    padding-left: 10px;
+}
+.checkout__logo__image{
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+}
+.checkout__sidebar__logo{
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+}
+.checkout__sidebar__features{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 10px 0px;
+    padding-left: 2rem;
+    border-left: 3px solid rgb(36, 55, 7);
+    cursor: pointer;
+    color: rgb(37, 36, 36);
+    font-weight: bold;
+}
+.checkout__sidebar__features__locked{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin: 10px 0px;
+    padding-left: 2rem;
+    cursor: pointer;
+    color: rgb(164, 157, 157);
+    font-weight: bold;
+}
+.checkout__sidebar__feature__name{
+    margin-left: 0.5rem;
+}
+.checkout__sidebar__general{
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+.checkout__sidebar__tools{
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+hr{
+    margin: 1.5rem 0;
+    width: 80%;
+}
+.checkout__sidebar__logout{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 80%;
+    align-items: center;
+    /* border: 1px solid red; */
+    padding-left: 0rem;
+}
+.checkout__sidebar__logout__text{
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}

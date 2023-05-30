@@ -1,0 +1,10 @@
+.checkout__main__container{
+    margin-left: 16%;
+    margin-right: 23%;
+    width: 70%;
+    height: 100%;
+    padding: 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* border: 5px solid red; */
+}

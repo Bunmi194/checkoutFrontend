@@ -1,0 +1,38 @@
+.checkout__card__container{
+    background-color: rgb(206, 198, 198);
+    /* padding: 10px 5px; */
+}
+.checkout__rightsidebar__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+    /* border: 1px solid red; */
+    width: 15rem;
+    padding: 10px 30px;
+    border-radius: 10px;background: rgb(162,70,136);
+    background: linear-gradient(180deg, rgba(162,70,136,1) 4%, rgba(65,72,185,0.9374124649859944) 81%);
+}
+.checkout__rightsidebar__bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.checkout__card__span{
+    margin-right: 1rem;
+}
+.checkout__visacard{
+    width: 60px;
+    height: 60px;
+}
+.checkout__card__details{
+    margin-top: 1.5rem;
+}
+.checkout__card__company{
+    font-weight: bold;
+    font-size: 24px;
+}
+.checkout__rightsidebar__yourcard{
+    font-weight: bold;
+    font-size: 20px;
+}

@@ -1,0 +1,29 @@
+.checkout__withdrawal__container{
+    width: 80%;
+    padding: 5px 20px;
+    
+}
+.checkout__withdraw{
+    display: block;
+    padding: 10px;
+    width: 90%;
+}
+.checkout__withdraw__div{
+    display: flex;
+    margin: 10px 0;
+}
+.checkout__withdraw__amount{
+    width: 50%;
+    padding: 10px;
+}
+.checkout__withdraw__select{
+    width: 40%;
+}
+.checkout__withdraw__button{
+    width: 100%;
+    padding: 10px;
+}
+.checkout__withdraw__text{
+    font-weight: bold;
+    font-size: 20px;
+}

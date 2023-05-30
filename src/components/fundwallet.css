@@ -1,0 +1,31 @@
+.checkout__fundwallet__container{
+    width: 80% !important;
+    padding: 0px 20px;
+    margin-top: -20px;
+}
+.checkout__fundwallet__wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.checkout__fundwallet__input__div{
+    width: 50%;
+    /* border: 1px solid red; */
+}
+.checkout__fundwallet__button__div{
+    width: 40%;
+    /* border: 1px solid red; */
+}
+.checkout__fundwallet__button__div button{
+    width: 100% !important;
+    padding: 10px;
+}
+.checkout__fundwallet__input{
+    padding: 10px;
+    width: 95%;
+}
+.checkout__fundwallet__text{
+    font-weight: bold;
+    font-size: 20px;
+}
