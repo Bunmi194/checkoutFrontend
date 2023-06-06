@@ -7,6 +7,9 @@
     background-color: #f7f7f7;
     /* border: 10px solid red; */
 }
+.app-name{
+  padding-top: 20px;
+}
 .checkout__login__input{
   border-radius: 0 !important;
 }
@@ -42,8 +45,8 @@
   cursor: pointer;
 }
 .checkout__app-logo{
-  width: 30px !important;
-  height: 30px !important;
+  width: 80px !important;
+  height: 80px !important;
 }
   .chat__header{
     margin: 0 auto;

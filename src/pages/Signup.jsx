@@ -18,67 +18,75 @@ function SignupPage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [ isLoading, setIsLoading ] = useState(false);
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
 //   const handleGoogleSignup = () => {
 //     window.open("http://localhost:4000/v1/strategy/auth/google", "_self");
 //   }
 
-//   const handleSignup = async (e) => {
-//       e.preventDefault();
-//       setIsLoading(true);
-//       if(!email || !password || !firstName || !lastName) { 
-//         setIsLoading(false);
-//         toast.error('Please fill all fields', {
-//           position: toast.POSITION.TOP_RIGHT
-//         });
-//         return;
-//       }
-//       if(password !== confirmpassword){
-//         setIsLoading(false);
-//         toast.error("Passwords do not match", {
-//           position: toast.POSITION.TOP_RIGHT
-//         });
-//         return;
-//       }
-//       const signup = await fetch("http://localhost:4000/v1/users/register", {
-//         method: 'POST',
-//         headers: {
-//           "Content-Type": "application/json",
-//           "Access-Control-Allow-Origin": "*",
-//         },
-//         body: JSON.stringify({
-//           email,
-//           password,
-//           confirmPassword: confirmpassword,
-//           lastName,
-//           firstName
-//         })
-//       });
+  const handleSignup = async (e) => {
+      try {
+        e.preventDefault();
+      setIsLoading(true);
+      if(!email || !password || !firstName || !lastName) { 
+        setIsLoading(false);
+        toast.error('Please fill all fields', {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        return;
+      }
+      if(password !== confirmpassword){
+        setIsLoading(false);
+        toast.error("Passwords do not match", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        return;
+      }
+      const signup = await fetch("http://localhost:4000/v1/users/register", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          confirmPassword: confirmpassword,
+          lastName,
+          firstName
+        })
+      });
 
-//       const result = await signup.json();
-//       console.log("result: ", result);
-//       if(!result || !result.token) {
-//         setIsLoading(false);
-//         toast.error(`Error: ${result? result.message : "Signup failed"}`, {
-//           position: toast.POSITION.TOP_RIGHT
-//         });
-//         return;
-//       };
-//       localStorage.setItem("userDetails", JSON.stringify(email));
-//       setEmail("");
-//       setPassword("");
-//       setLastName("");
-//       setFirstName("");
-//       toast.success(`${result.message}`, {
-//         position: toast.POSITION.TOP_RIGHT
-//       });
-//       setIsLoading(false);
-//       setTimeout(()=>{
-//         navigate('/success');
-//       }, 5000);
-//       return;
-//   };
+      const result = await signup.json();
+      console.log("result: ", result);
+      if(!result || !result.status) {
+        setIsLoading(false);
+        toast.error(`Error: ${result? result.message : "Signup failed"}`, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        return;
+      };
+      localStorage.setItem("userDetails", JSON.stringify(email));
+      setEmail("");
+      setPassword("");
+      setLastName("");
+      setFirstName("");
+      toast.success(`${result.message}`, {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      setIsLoading(false);
+      setTimeout(()=>{
+        navigate('/success');
+      }, 5000);
+      return;
+      } catch (error) {
+        console.log("Error: ", error);
+        setIsLoading(false);
+        toast.error(`Error: ${"Internal Server Error"}`, {
+          position: toast.POSITION.TOP_RIGHT
+        });
+      }
+  };
   return (
 <div className="signup-container">
       <div className="signup-image"></div>
@@ -129,7 +137,7 @@ function SignupPage() {
             setConfirmPassword(e.target.value);
           }} className="checkout__signup__input"/>
         </div>
-        <button disabled={isLoading} type="submit" className="checkout__btnsignup" >{isLoading? <ClipLoader color="#000" loading={true} css={override} size={15} /> : "Sign Up"}</button>
+        <button disabled={isLoading} type="submit" className="checkout__btnsignup" onClick={handleSignup}>{isLoading? <ClipLoader color="#000" loading={true} css={override} size={15} /> : "Sign Up"}</button>
         <div className='chat__or__block'>
           <div className='chat__line__div'></div>
           <div>

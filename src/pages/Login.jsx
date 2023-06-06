@@ -13,7 +13,7 @@ function LoginPage({setUserAccess}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [ isLoading, setIsLoading ] = useState(false);
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 //   const location = useLocation();
 
 
@@ -54,48 +54,56 @@ function LoginPage({setUserAccess}) {
 //     return;
 
 //   }
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//     setIsLoading(true);
-//     if(!email || !password) { 
-//       setIsLoading(false);
-//       toast.error('Please enter your email and password', {
-//         position: toast.POSITION.TOP_RIGHT
-//       });
-//       return;
-//     }
-//     const login = await fetch("http://localhost:4000/v1/users/login", {
-//       method: 'POST',
-//       headers: {
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Origin": "*",
-//       },
-//       body: JSON.stringify({
-//         email,
-//         password
-//       })
-//     });
+  const handleLogin = async (e) => {
+    try {
+      e.preventDefault();
+    setIsLoading(true);
+    if(!email || !password) { 
+      setIsLoading(false);
+      toast.error('Please enter your email and password', {
+        position: toast.POSITION.TOP_RIGHT
+      });
+      return;
+    }
+    const login = await fetch("http://localhost:4000/v1/users/login", {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    });
 
-//     const result = await login.json();
-//     console.log("result: ", result);
-//     if(!result || result.status !== 'success') {
-//       setIsLoading(false);
-//       toast.error(`Error: ${result.message}`, {
-//         position: toast.POSITION.TOP_RIGHT
-//       })
-//       return;
-//     };
-//     setIsLoading(false);
-//     localStorage.setItem("userDetails", JSON.stringify(result));
-//     setUserAccess(true);
-//     toast.success(`${result.message}`, {
-//       position: toast.POSITION.TOP_RIGHT
-//     })
-//     setTimeout(()=> {
-//       navigate('/chat');
-//     }, 4000);
-//     return;
-//   };
+    const result = await login.json();
+    console.log("result: ", result);
+    if(!result || !result.status) {
+      setIsLoading(false);
+      toast.error(`Error: ${result.message}`, {
+        position: toast.POSITION.TOP_RIGHT
+      })
+      return;
+    };
+    setIsLoading(false);
+    localStorage.setItem("userDetails", JSON.stringify(result));
+    setUserAccess(true);
+    toast.success(`${result.message}`, {
+      position: toast.POSITION.TOP_RIGHT
+    })
+    setTimeout(()=> {
+      navigate('/dashboard');
+    }, 4000);
+    return;
+    } catch (error) {
+      setIsLoading(false);
+      setUserAccess(false);
+      toast.error(`Error: Internal Server Error`, {
+        position: toast.POSITION.TOP_RIGHT
+      })
+    }
+  };
 
   return (
     <div className="login-container">
@@ -129,7 +137,7 @@ function LoginPage({setUserAccess}) {
                 setPassword(e.target.value);
               }} className="checkout__login__input"/>
             </div>
-            <button disabled={isLoading} type="submit" className="checkout__btnlogin">{isLoading? <ClipLoader color="#000" loading={true} css={override} size={15} /> : "Login"}</button>
+            <button disabled={isLoading} type="submit" className="checkout__btnlogin" onClick={handleLogin}>{isLoading? <ClipLoader color="#000" loading={true} css={override} size={15} /> : "Login"}</button>
             <div className='chat__or__block'>
               <div className='chat__line__div'></div>
               <div>

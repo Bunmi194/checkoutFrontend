@@ -2,6 +2,13 @@ import React from 'react'
 import { FiArrowUpRight } from "react-icons/fi";
 import "./statistics.css";
 
+const Statistics = () => {
+    const userDetails = localStorage.getItem('userDetails');
+    console.log("userDetails: ", userDetails)
+    const balance = userDetails? JSON.parse(userDetails).user.balance : "";
+    console.log("balance: ", balance);
+
+
 const statistics = [
     {
         title: "Total Income",
@@ -10,16 +17,15 @@ const statistics = [
     },
     {
         title: "Available Balance",
-        amount: 5000,
-        source: "In Funding"
+        amount: balance,
+        source: "Wallet"
     },
     {
         title: "Total Expenditure",
         amount: 5000,
         source: "In Funding"
     }
-]
-const Statistics = () => {
+];
   return (
     <div className='checkout__statistics__wrapper'>
         {
