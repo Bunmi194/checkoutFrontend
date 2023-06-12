@@ -39,7 +39,7 @@ useEffect(()=>{
         <div className='checkout__main__stats__container'>
             <div>
                 <p className='checkout__statistics__title'>{statistic.title}</p>
-                <p className={`checkout__statistics__amount ${statistic.source === "Funding"? "white" : statistic.source === "Wallet" ? "green" : "reed"}`}>&#8358; {statistic.amount}</p>
+                <p className={`checkout__statistics__amount ${statistic.source === "Funding"? "white" : statistic.source === "Wallet" ? "green" : "reed"}`}>&#8358; {statistic.amount || 0}</p>
                 <p className='checkout__statistics__source'>{statistic.source}</p>
             </div>
             <div className='checkout__main__statistics__increase'>

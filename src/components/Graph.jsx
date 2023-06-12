@@ -48,19 +48,49 @@ console.log(transferDetailsLength, withdrawDetailsLength, fundingDetailsLength)
 //labels = new Array(length of longest);
 //labels.fill("");
 //labels should be Array.fill(length of the longest of firstValue, secondValue and thirdValue)
-const firstValue = [150,200,230,180,210,200,310,150,209,210,230,220];
-const secondValue = [190,120,330,250,180,120,210,140,109,210,330];
-const thirdValue = [210,160,230,203,208,200,190,160,198,440];
 
-const transferData = transferDetails.map(transfer => {
-  return transfer.amount;
-});
-const fundingData = fundingDetails.map(fund => {
-  return fund.amount;
-});
-const withdrawalData = withdrawDetails.map(withdraw => {
-  return withdraw.amount;
-});
+// const transferData = transferDetails.map(transfer => {
+//   return transfer.amount;
+// });
+
+const transferDataFunction = () => {
+  let result = [0];
+  if(transferDetails && transferDetails.length){
+    result = transferDetails.map(transfer => {
+      return transfer.amount;
+    });
+  }
+  return result
+}
+const fundingDataFunction = () => {
+  let result = [0];
+  if(fundingDetails && fundingDetails.length){
+    result = fundingDetails.map(fund => {
+      return fund.amount;
+    });
+  }
+  return result
+}
+const withdrawalDataFunction = () => {
+  let result = [0];
+  if(withdrawDetails && withdrawDetails.length){
+    result = withdrawDetails.map(withdraw => {
+      return withdraw.amount;
+    });
+  }
+  return result
+}
+const transferData = transferDataFunction();
+const fundingData = fundingDataFunction();
+const withdrawalData = withdrawalDataFunction();
+console.log("details: ", transferData, withdrawalData, fundingData)
+
+// const fundingData = fundingDetails.map(fund => {
+//   return fund.amount;
+// });
+// const withdrawalData = withdrawDetails.map(withdraw => {
+//   return withdraw.amount;
+// });
 
 const data = {
   labels,
