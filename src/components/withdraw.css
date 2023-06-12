@@ -3,21 +3,32 @@
     padding: 5px 20px;
     
 }
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .checkout__withdraw{
     display: block;
     padding: 10px;
-    width: 90%;
+    width: 100%;
+    border-radius: 0;
 }
 .checkout__withdraw__div{
     display: flex;
     margin: 10px 0;
 }
 .checkout__withdraw__amount{
-    width: 50%;
+    width: 60%;
     padding: 10px;
+    border-radius: 0;
 }
 .checkout__withdraw__select{
     width: 40%;
+    border-radius: 0;
+    margin-top: 5px;
+    height: 40px;
 }
 .checkout__withdraw__button{
     width: 100%;

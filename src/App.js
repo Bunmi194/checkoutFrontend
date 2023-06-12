@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Dashboard from "./pages/Dashboard";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
 import Success from "./pages/Success";
@@ -11,8 +11,9 @@ import "./App.css";
 function App() {
   const [ userAccess, setUserAccess ] = useState(false);
   
-  useEffect(()=>{
   const userDetails = localStorage.getItem('userDetails');
+  useEffect(()=>{
+  console.log("userDetailsAPP: ", userDetails);
   if(userDetails){
     setUserAccess(userDetails);
   }
@@ -22,11 +23,11 @@ function App() {
     <div className="checkout__dashboard__container__app">
     <ToastContainer />
       <Routes>
-        <Route path="/" element={<LoginPage setUserAccess={setUserAccess} />}></Route>
-        <Route path="/register" element={<SignupPage />}></Route>
+        <Route path="/" element={!userAccess? <LoginPage setUserAccess={setUserAccess}/> : <Navigate to="/dashboard" />} ></Route>
+        <Route path="/register" element={!userAccess? <SignupPage /> : <Navigate to="/dashboard" />}></Route>
         <Route path="/success" element={<Success />}></Route>
         <Route path="/verify" element={<Verification />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route path="/dashboard" element={ (!userAccess && !userDetails)? <Navigate to="/" /> : <Dashboard setUserAccess={setUserAccess} /> } ></Route>
       </Routes>
     </div>
   );

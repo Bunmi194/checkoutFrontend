@@ -1,31 +1,36 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FiArrowUpRight } from "react-icons/fi";
 import "./statistics.css";
 
-const Statistics = () => {
-    const userDetails = localStorage.getItem('userDetails');
-    console.log("userDetails: ", userDetails)
-    const balance = userDetails? JSON.parse(userDetails).user.balance : "";
+const Statistics = ({ transferTotal, withdrawTotal, fundingTotal, balance }) => {
+    // const userDetails = localStorage.getItem('userDetails');
+    // console.log("userDetails: ", userDetails)
     console.log("balance: ", balance);
+    console.log("transferTotal: ", transferTotal);
+    console.log("withdrawTotal: ", withdrawTotal);
 
 
 const statistics = [
     {
         title: "Total Income",
-        amount: 5000,
-        source: "In Funding"
+        amount: Number(fundingTotal).toLocaleString(),
+        source: "Funding"
     },
     {
         title: "Available Balance",
-        amount: balance,
+        amount: Number(balance).toLocaleString(),
         source: "Wallet"
     },
     {
-        title: "Total Expenditure",
-        amount: 5000,
-        source: "In Funding"
+        title: "Expenditure",
+        amount: Number(Number(transferTotal) + Number(withdrawTotal)).toLocaleString(),
+        source: "W & T"
     }
 ];
+useEffect(()=>{
+
+}, [transferTotal, withdrawTotal, fundingTotal]);
+
   return (
     <div className='checkout__statistics__wrapper'>
         {
@@ -33,12 +38,12 @@ const statistics = [
 
         <div className='checkout__main__stats__container'>
             <div>
-                <p>{statistic.title}</p>
-                <p>&#8358; {statistic.amount}</p>
-                <p>{statistic.source}</p>
+                <p className='checkout__statistics__title'>{statistic.title}</p>
+                <p className={`checkout__statistics__amount ${statistic.source === "Funding"? "white" : statistic.source === "Wallet" ? "green" : "reed"}`}>&#8358; {statistic.amount}</p>
+                <p className='checkout__statistics__source'>{statistic.source}</p>
             </div>
             <div className='checkout__main__statistics__increase'>
-                <p>36% <FiArrowUpRight /></p>
+                <p><img src={statistic.source === "Funding"? "profit.png" : statistic.source === "Wallet" ? "newwallet.png" : "expenses.png"} alt={"expenses"} className="checkout__statistics__icon"/></p>
             </div>
         </div>
             )

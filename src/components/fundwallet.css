@@ -9,12 +9,18 @@
     justify-content: space-between;
     align-items: center;
 }
+.checkout__fundwallet__btn{
+    border-radius: 0;
+    height: 40px;
+}
 .checkout__fundwallet__input__div{
-    width: 50%;
+    width: 60%;
+    height: 50px;
     /* border: 1px solid red; */
 }
 .checkout__fundwallet__button__div{
     width: 40%;
+    height: 60px;
     /* border: 1px solid red; */
 }
 .checkout__fundwallet__button__div button{
@@ -23,7 +29,8 @@
 }
 .checkout__fundwallet__input{
     padding: 10px;
-    width: 95%;
+    width: 100%;
+    border-radius: 0;
 }
 .checkout__fundwallet__text{
     font-weight: bold;

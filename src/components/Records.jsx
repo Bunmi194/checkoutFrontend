@@ -1,34 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./records.css";
 
-const recordValues = [
-    {
-        id: "1",
-        beneficiary: 'John Doe',
-        amount: 400,
-        currency: "USD",
-        date: "7 July 2023",
-        status: "Completed"
-    },
-    {
-        id: "2",
-        beneficiary: 'John Smith',
-        amount: 600,
-        currency: "USD",
-        date: "9 July 2023",
-        status: "Completed"
-    },
-    {
-        id: "3",
-        beneficiary: 'Abike Doe',
-        amount: 4000,
-        currency: "NGN",
-        date: "11 July 2023",
-        status: "Completed"
-    },
-    
-]
-const Records = () => {
+const Records = ({ lastThreeTransactions }) => {
+    const getOrdinalSuffix = (day) => {
+        if (day >= 11 && day <= 13) {
+          return "th";
+        }
+      
+        switch (day % 10) {
+          case 1:
+            return "st";
+          case 2:
+            return "nd";
+          case 3:
+            return "rd";
+          default:
+            return "th";
+        }
+      }
+      
+    const formatDate = (date) => {
+        const newDate = new Date(date);
+        const day = newDate.getDate();
+        const month = new Intl.DateTimeFormat('en', { month: 'long' }).format(newDate);
+        const year = newDate.getFullYear();
+        return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
+    }
+
+
+useEffect(()=>{
+
+}, [ lastThreeTransactions ]);
+
   return (
     <div className='checkout__main__table__container'>
         <table className='my-table'>
@@ -37,23 +40,33 @@ const Records = () => {
                     <td>S/N</td>
                     <td>Beneficiary</td>
                     <td>Amount</td>
-                    <td>Currency</td>
+                    <td>Type</td>
                     <td>Date</td>
                     <td>Status</td>
                 </tr>
             </thead>
             <tbody>
                 {
-                    recordValues && recordValues.map((record, index)=> (
-                        <tr key={record.id} className="checkout__main__rows">
+                    lastThreeTransactions.length?
+                    lastThreeTransactions && lastThreeTransactions.map((record, index)=> (
+                        <tr key={record? record.id : ""} className="checkout__main__rows">
                             <td>{++index}</td>
-                            <td>{record.beneficiary}</td>
-                            <td>{record.amount}</td>
-                            <td>{record.currency}</td>
-                            <td>{record.date}</td>
-                            <td className='completed'><span className='completed__text'>{record.status}</span></td>
+                            <td>{`${record.User? record.User.firstName : ""} ${record.User? record.User.lastName : ""} (${record? record.recipientId : ""})` || record? record.recordId : ""}</td>
+                            <td>{Number(record? record.amount : 0).toLocaleString() || ""}</td>
+                            <td>{record? `${record.typeOfTransaction}`.toUpperCase() : ""}</td>
+                            <td>{record? formatDate(record.createdAt) : ""}</td>
+                            <td className='completed'><span className={`${record? record.status === "completed"? "completed__text" : record.status === "failed"? "red" : "yellow" : ""}`}>{record? record.status : ""}</span></td>
                         </tr>
                     ))
+                    :
+                    <div className='records__no__record__div'>
+                        <div>
+                            <h3>No Record Found</h3>
+                        </div>
+                        <div>
+                            <img src='/memo.png' alt="No Record" className='records__no__record__img' />
+                        </div>
+                    </div>
                 }
             </tbody>
         </table>

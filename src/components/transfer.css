@@ -6,7 +6,15 @@
 .checkout__transfer{
     display: block;
     padding: 10px;
-    width: 90%;
+    width: 100%;
+    border-radius: 0;
+}
+.rightSidebar__verified__details{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(28, 250, 28);
 }
 .checkout__transfer__div{
     display: flex;
@@ -14,11 +22,15 @@
     /* border: 2px solid red; */
 }
 .checkout__transfer__amount{
-    width: 50%;
+    width: 60%;
     padding: 10px;
+    border-radius: 0;
 }
 .checkout__transfer__select{
     width: 40%;
+    height: 40px;
+    margin-top: 5px;
+    border-radius: 0;
 }
 .checkout__transfer__button{
     width: 100%;
@@ -27,4 +39,66 @@
 .checkout__transfer__text{
     font-weight: bold;
     font-size: 20px;
+}
+.checkout__btn__click{
+    border-radius: 0;
+}
+/* 
+modal
+ */
+ .custom-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; /* Set the desired width */
+    height: 300px; /* Set the desired height */
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+.otp__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.otp__btn__div{
+    margin: 1.8rem 0;
+}
+.otp__text__div{
+    padding: 1rem 1.5rem;
+}
+.otp__div__close{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between !important;
+    /* border: 1px solid red; */
+    /* width: 100%; */
+}
+.otp__close{
+    border: 1px solid navy;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.otp__input{
+    width: 50px;
+    margin: 2px;
+    border: none;
+}
+.otp__input__div{
+    display: flex;
 }

@@ -10,7 +10,7 @@
     bottom: 0;
     width: 15%;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: scroll;
 }
 .checkout__sidebar__content__container{
     display: flex;
@@ -25,6 +25,16 @@
     flex-direction: row;
     margin-bottom: 0rem;
     padding-left: 10px;
+    /* border: 1px solid red; */
+}
+.logoutModal{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+}
+.logoutModal__child{
+    margin: 0 1rem;
 }
 .checkout__logo__image{
     width: 80px;
@@ -63,12 +73,16 @@
 .checkout__sidebar__feature__name{
     margin-left: 0.5rem;
 }
+.checkout__features{
+    /* border: 1px solid red; */
+}
 .checkout__sidebar__general{
-    margin-top: 5rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     font-size: 24px;
     font-weight: bold;
     padding-left: 10px;
+    /* border: 1px solid red; */
 }
 .checkout__sidebar__tools{
     font-size: 24px;

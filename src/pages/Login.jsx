@@ -14,50 +14,58 @@ function LoginPage({setUserAccess}) {
   const [password, setPassword] = useState('');
   const [ isLoading, setIsLoading ] = useState(false);
   const navigate = useNavigate();
-//   const location = useLocation();
+  const location = useLocation();
 
 
-//   const params = new URLSearchParams(location.search);
-//   const token = params.get('token');
-//   const googleEmail = params.get('email');
-//   const firstName = params.get('firstName');
-//   const lastName = params.get('lastName');
-//   const id = params.get('id');
+  const params = new URLSearchParams(location.search);
+  const token = params.get('token');
+  const googleEmail = params.get('email');
+  const firstName = params.get('firstName');
+  const lastName = params.get('lastName');
+  const id = params.get('id');
+  const currency = params.get('currency');
+  const balance = params.get('balance');
+  const isVerified = params.get('isVerified');
 
-//   useEffect(()=>{
-//     if(token && googleEmail && firstName && lastName && id) {
-//       googleLoginOrSignup();
-//     }
-//   }, []);
+  useEffect(()=>{
+    if(token && googleEmail && firstName && lastName && id) {
+      googleLoginOrSignup();
+    }
+  }, []);
 
-//   const handleGoogleLogin = () => {
-//     window.open("http://localhost:4000/v1/strategy/auth/google", "_self");
-//   }
-//   const googleLoginOrSignup = () => {
-//     const userObject = {
-//       token,
-//       userExists: [
-//         {
-//           email: googleEmail,
-//           firstName,
-//           lastName,
-//           _id: id,
-//         }
-//       ]
-//     };
+  const handleGoogleLogin = () => {
+    window.open("http://localhost:4000/v1/strategy/auth/google", "_self");
+  }
+  const googleLoginOrSignup = () => {
+    const userObject = {
+      status: true,
+      message: "Login successful",
+      token,
+      user: {
+          email: googleEmail,
+          firstName,
+          lastName,
+          id,
+          password: "",
+          currency,
+          balance,
+          isVerified,
+        }
+      
+    };
 
-//     console.log("userObject: ", userObject);
+    console.log("userObject: ", userObject);
 
-//     localStorage.setItem("userDetails", JSON.stringify(userObject));
-//     setUserAccess(true);
-//     window.open('/chat', "_self");
-//     return;
+    localStorage.setItem("userDetails", JSON.stringify(userObject));
+    setUserAccess(true);
+    window.open('/dashboard', "_self");
+    return;
 
-//   }
+  }
   const handleLogin = async (e) => {
     try {
       e.preventDefault();
-    setIsLoading(true);
+      setIsLoading(true);
     if(!email || !password) { 
       setIsLoading(false);
       toast.error('Please enter your email and password', {
@@ -145,7 +153,7 @@ function LoginPage({setUserAccess}) {
               </div>
               <div className='chat__line__div'></div>
             </div>
-            <button type="submit"  className="checkout__btnlogin__google" >Continue with Google</button>
+            <button type="submit"  className="checkout__btnlogin__google" onClick={handleGoogleLogin}>Continue with Google</button>
           </div>
         </div>
       </form>

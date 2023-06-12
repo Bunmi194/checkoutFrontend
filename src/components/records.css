@@ -7,6 +7,19 @@
     width: 95%;
     margin: 30px 0;
     padding: 20px 10px;
+    background-color: rgb(99, 131, 131);
+}
+.records__no__record__div{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 55%;
+}
+.records__no__record__img{
+    width: 15rem;
+    height: 15rem;
 }
 .checkout__main__table__container table{
     width: inherit;
@@ -22,6 +35,9 @@
     text-align: left;
     border-bottom: 1px solid #ddd;
     height: 30px;
+}
+.my-table thead td {
+    font-weight: bold;
 }
 
 .my-table th {
@@ -40,5 +56,23 @@
     padding: 4px 10px;
     background-color: rgb(216, 234, 216);
     color: green;
+    border-radius: 20px;
+}
+
+.red{
+    border: none;
+    color: red;
+    padding: 4px 10px;
+    background-color: rgb(216, 234, 216);
+    color: rgb(96, 24, 24);
+    border-radius: 20px;
+}
+
+.yellow{
+    border: none;
+    color: red;
+    padding: 4px 10px;
+    background-color: rgb(216, 234, 216);
+    color: rgb(100, 92, 22);
     border-radius: 20px;
 }

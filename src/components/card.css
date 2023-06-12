@@ -11,7 +11,9 @@
     width: 15rem;
     padding: 10px 30px;
     border-radius: 10px;background: rgb(162,70,136);
-    background: linear-gradient(180deg, rgba(162,70,136,1) 4%, rgba(65,72,185,0.9374124649859944) 81%);
+	animation: 15s ease infinite;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    /* background: linear-gradient(180deg, rgba(162,70,136,1) 4%, rgba(65,72,185,0.9374124649859944) 81%); */
 }
 .checkout__rightsidebar__bottom{
     display: flex;
@@ -27,10 +29,13 @@
 }
 .checkout__card__details{
     margin-top: 1.5rem;
+    font-size: 10px;
+    color: greenyellow;
+    font-weight: bold;
 }
 .checkout__card__company{
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
 }
 .checkout__rightsidebar__yourcard{
     font-weight: bold;

@@ -4,9 +4,9 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 const Header = () => {
   return (
     <div className='checkout__main__header__container'>
-        <div>
+        <div className='checkout__main__header__content'>
             <h3>Overview</h3>
-            <p>Manage your personal finance in just one step</p>
+            <p className='checkout__main__header__text'>Manage your personal finance in just one step</p>
         </div>
         <div className='checkout__main__images__header'>
             <div>

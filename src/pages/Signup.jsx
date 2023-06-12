@@ -20,9 +20,9 @@ function SignupPage() {
   const [ isLoading, setIsLoading ] = useState(false);
   const navigate = useNavigate();
 
-//   const handleGoogleSignup = () => {
-//     window.open("http://localhost:4000/v1/strategy/auth/google", "_self");
-//   }
+  const handleGoogleSignup = () => {
+    window.open("http://localhost:4000/v1/strategy/auth/google", "_self");
+  }
 
   const handleSignup = async (e) => {
       try {
@@ -145,7 +145,7 @@ function SignupPage() {
           </div>
           <div className='chat__line__div'></div>
         </div>
-        <button type="submit" className="checkout__btnsignup__google" >Continue with Google</button>
+        <button type="submit" className="checkout__btnsignup__google" onClick={handleGoogleSignup}>Continue with Google</button>
         
           </div>
         </div>

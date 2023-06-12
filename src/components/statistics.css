@@ -5,16 +5,57 @@
     align-items: center;
     width: 30%;
     /* border: 1px solid red; */
-    background-color: aliceblue;
+    background-color: rgb(30, 73, 110);
     padding: 0px 20px;
     margin: 20px;
     border-radius: 10px;
 }
+.checkout__statistics__icon{
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    padding: 2px;
+    background-color: #8e8f90;
+    border-radius: 5px;
+}
 .checkout__main__statistics__increase{
     /* border: 1px solid red; */
+}
+.checkout__statistics__title, .checkout__statistics__source{
+    font-weight: bold;
+    color: #cfd4d6;
 }
 .checkout__statistics__wrapper{
     display: flex;
     flex-direction: row;
     
+}
+.green{
+    border: none;
+    color: rgb(141, 207, 135);
+    padding: 4px 10px;
+    font-weight: bold;
+    background-color: rgb(28, 30, 28);
+    /* color: rgb(96, 24, 24); */
+    border-radius: 20px;
+    width: inherit;
+}
+.white{
+    border: none;
+    color: rgb(213, 223, 72);
+    font-weight: bold;
+    padding: 4px 10px;
+    background-color: rgb(28, 30, 28);
+    /* color: rgb(96, 24, 24); */
+    border-radius: 20px;
+    width: inherit;
+}
+.reed{
+    border: none;
+    color: red;
+    font-weight: bold;
+    padding: 4px 10px;
+    background-color: rgb(28, 30, 28);
+    border-radius: 20px;
+    width: inherit;
 }

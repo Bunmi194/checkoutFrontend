@@ -6,13 +6,13 @@ import Transfer from "./Transfer";
 import Withdraw from "./Withdraw";
 import Chart from "./Chart";
 
-const RightSideBar = () => {
+const RightSideBar = ({ activityCounter, setActivityCounter }) => {
   return (
     <div className='checkout__rightsidebar__overall__container'>
       <Card />
-      <FundWallet />
-      <Transfer />
-      <Withdraw />
+      <FundWallet setActivityCounter={setActivityCounter} />
+      <Transfer setActivityCounter={setActivityCounter} />
+      <Withdraw setActivityCounter={setActivityCounter} />
       {/* <Chart /> */}
     </div>
   )
