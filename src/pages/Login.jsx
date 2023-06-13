@@ -127,7 +127,7 @@ function LoginPage({setUserAccess}) {
             </div>
         </div>
         <div>
-          <p className='chat__redirect__text'>Don't have an account? <a href="/register" className='checkout__login__signup__btn'>Sign Up</a></p>
+          <p className='chat__redirect__text'><span>Don't have an account?</span> <a href="/register" className='checkout__login__signup__btn'>Sign Up</a></p>
         </div>
       </div>
         <div className='checkout__login__wrapper'>

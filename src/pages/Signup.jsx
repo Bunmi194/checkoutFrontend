@@ -101,7 +101,7 @@ function SignupPage() {
             </div>
         </div>
         <div>
-          <p className='chat__redirect__text'>Have an account? <a href="/" className='checkout__login__signup__btn'>Login</a></p>
+          <p className='chat__redirect__text'><span>Have an account?</span> <a href="/" className='checkout__login__signup__btn'>Login</a></p>
         </div>
       </div>
         <div className='checkout__signup__wrapper'>

@@ -1,6 +1,6 @@
 .signup-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -51,7 +51,7 @@
   background-image: url('/public/wallet.jpeg');
   background-size: cover;
   background-position: center;
-  width: 30% !important;
+  width: 70% !important;
   height: 100%;
 }
 
@@ -86,23 +86,6 @@
 .checkout__btnsignup__google:hover{
   background-color: red !important;
 }
-@media screen and (min-width: 768px) {
-  .signup-container {
-    flex-direction: row;
-  }
-
-  .signup-image {
-    height: 100%;
-    max-width: none;
-    flex: 1;
-  }
-
-  .signup-form {
-    margin: 20px;
-    flex: 1;
-  }
-}
-
 h2 {
   margin: 0 0 20px;
 }
@@ -125,4 +108,47 @@ input {
   font-size: 16px;
   margin-top: 5px;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 900px){
+  .app-name{
+    font-size: 14px !important;
+  }
+  .signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+  }
+  .signup-image{
+    display: none;
+  }
+  .checkout__btnsignup__google{
+    background: none;
+  }
+  .checkout__app-logo{
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 5px;
+    padding-top: 20px;
+  }
+  .chat__redirect__text span{
+    display: none;
+  }
+  .checkout__login__signup__btn{
+    font-size: 11px;
+    padding: 5px;
+  }
+  .checkout__login__signup__div{
+    margin-bottom: 1rem;
+  }
+} 
+
+@media screen and (min-width: 901px) and (max-width: 1180px){
+  .chat__redirect__text span{
+    display: none;
+  }
 }

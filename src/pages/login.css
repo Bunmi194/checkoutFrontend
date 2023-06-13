@@ -1,8 +1,8 @@
 .login-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100vh;
     background-color: #f7f7f7;
     /* border: 10px solid red; */
@@ -60,7 +60,7 @@
     background-image: url('/public/wallet.jpeg');
     background-size: cover;
     background-position: center;
-    width: 30% !important;
+    width: 70% !important;
     height: 100%;
   }
   
@@ -118,22 +118,6 @@
   .chat__login__loader{
     display: inline-block;
   }
-  @media screen and (min-width: 768px) {
-    .login-container {
-      flex-direction: row;
-    }
-  
-    .login-image {
-      height: 100%;
-      max-width: none;
-      flex: 1;
-    }
-  
-    .login-form {
-      margin: 20px;
-      flex: 1;
-    }
-  }
   
   h2 {
     margin: 0 0 20px;
@@ -173,4 +157,46 @@
   button:hover {
     background-color: #0069d9;
   }
-  
+
+@media screen and (max-width: 900px){
+  .app-name{
+    font-size: 14px !important;
+  }
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+  }
+  .login-image{
+    display: none;
+  }
+  .checkout__btnlogin__google{
+    background: none;
+  }
+  .checkout__app-logo{
+    width: 30px !important;
+    height: 30px !important;
+    margin: 0 5px;
+    padding-top: 20px;
+  }
+  .chat__redirect__text span{
+    display: none;
+  }
+  .checkout__login__signup__btn{
+    font-size: 11px;
+    padding: 5px;
+  }
+  .checkout__login__signup__div{
+    margin-bottom: 1rem;
+  }
+} 
+
+@media screen and (min-width: 901px) and (max-width: 1180px){
+  .chat__redirect__text span{
+    display: none;
+  }
+}
