@@ -40,18 +40,7 @@ const options = {
 
 const Graph = ({ transferDetailsLength, withdrawDetailsLength, fundingDetailsLength, transferDetails, fundingDetails, withdrawDetails }) => {
 
-// const labels = ['', '', '', '', '', '', '', '', '', '', '', ''];
 const labels = new Array(Math.max(transferDetailsLength, withdrawDetailsLength, fundingDetailsLength)).fill("");
-console.log("labels: ", labels);
-console.log("max: ", Math.max(transferDetailsLength, withdrawDetailsLength, fundingDetailsLength));
-console.log(transferDetailsLength, withdrawDetailsLength, fundingDetailsLength)
-//labels = new Array(length of longest);
-//labels.fill("");
-//labels should be Array.fill(length of the longest of firstValue, secondValue and thirdValue)
-
-// const transferData = transferDetails.map(transfer => {
-//   return transfer.amount;
-// });
 
 const transferDataFunction = () => {
   let result = [0];
@@ -84,13 +73,6 @@ const transferData = transferDataFunction();
 const fundingData = fundingDataFunction();
 const withdrawalData = withdrawalDataFunction();
 console.log("details: ", transferData, withdrawalData, fundingData)
-
-// const fundingData = fundingDetails.map(fund => {
-//   return fund.amount;
-// });
-// const withdrawalData = withdrawDetails.map(withdraw => {
-//   return withdraw.amount;
-// });
 
 const data = {
   labels,

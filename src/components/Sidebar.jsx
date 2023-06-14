@@ -46,7 +46,7 @@ const tools = [
     }
     
 ]
-const Sidebar = ({ setUserAccess, setDataLoaded }) => {
+const Sidebar = ({ setUserAccess, setDataLoaded, onSidebarToggle,  setOnSidebarToggle, setOnRightToggle }) => {
 
     const [ isModalOpen, setIsModalOpen ] = useState(false);
     const [ feature, setFeature ] = useState("");
@@ -57,6 +57,8 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
       }
     
     const logoutModal = () => {
+        setOnSidebarToggle(false);
+        setOnRightToggle(false);
         setIsModalOpen(true);
     }
     const stayLoggedIn = () => {
@@ -68,9 +70,18 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
         setDataLoaded(false);
         navigate("/");
     }
+
+    const openRight = (feature) => {
+        setOnSidebarToggle(false);
+        if(feature === "Fund Wallet" || feature === "Withdraw" || feature === "Transfer"){
+            setOnRightToggle(true);
+            return;
+        }
+        return;
+    }
     
   return (
-    <div>
+    <div className={`checkout__sidebar__master__container ${onSidebarToggle? "checkout__sidebar__master__container__show" : "checkout__sidebar__master__container__hide"}`}>
         <div className='checkout__sidebar__container'>
             <div className='checkout__sidebar__content__container'>
                 <div className='checkout__sidebar__logo__wrapper'>
@@ -85,7 +96,7 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
                     <p className='checkout__sidebar__general'>General</p>
                     { 
                     features && features.map(feature => (
-                        <div>
+                        <div onClick={()=>openRight(feature.name)}>
                             <div className={feature.name === "Dashboard"? `checkout__sidebar__features` : `checkout__sidebar__features__locked`} >
                                 <div>
                                     {feature.icon}
@@ -118,7 +129,7 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
 
             </div>
             <div className='checkout__sidebar__logout' onClick={logoutModal}>
-                <div>
+                <div className='logout__icon'>
                     <CiLogout />
                 </div>
                 <div>
@@ -129,7 +140,7 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
         <Modal
             isOpen={isModalOpen}
             onRequestClose={closeModal}
-            contentLabel="Example Modal"
+            contentLabel="Checkout Modal"
             className="custom-modal"
             bodyOpenClassName="custom-overlays"
             shouldFocusAfterRender={true}
@@ -148,10 +159,13 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
                     backgroundColor: 'rgba(0, 0, 0, 0.8)'
                 },
                 content: {
+                    overflow: "scroll",
+                    objectFit: "center",
+                    width: "inherit",
                 }
             }}
         > 
-            <div>
+            <div className='modal__container'>
                 <div className='otp__div__close'>
                     <div className=''>&nbsp;</div>
                     <div className='otp__close' onClick={closeModal}>X</div>
@@ -160,7 +174,7 @@ const Sidebar = ({ setUserAccess, setDataLoaded }) => {
                 <div className="otp__container">
                     <div className='otp__text__div'>
                         <h2>Checkout </h2>
-                        <p>Are you sure you want to logout of your account?</p>
+                        <p className='logout__modal__text'>Are you sure you want to logout of your account?</p>
                     </div>
                 
                     <div className='logoutModal'>

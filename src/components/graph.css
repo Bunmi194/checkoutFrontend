@@ -7,3 +7,19 @@
     align-items: center;
     justify-content: center;
 }
+
+@media screen and (max-width: 767px){
+    .checkout__main__graph__wrapper{
+        height: 15rem;
+        border: 1px solid navy;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    .checkout__main__graph__wrapper{
+        height: 15rem;
+        border: 1px solid navy;
+        border-radius: 10px;
+    }
+}

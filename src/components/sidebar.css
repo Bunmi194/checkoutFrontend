@@ -108,3 +108,102 @@ hr{
     font-weight: bold;
     cursor: pointer;
 }
+@media screen and (max-width: 767px) {
+    .checkout__sidebar__master__container__hide{
+        display: none;
+    }
+    .checkout__sidebar__master__container__show{
+        display: block;
+        position: absolute;
+        width: 50%;
+    }
+    .checkout__sidebar__container{
+        width: 250px;
+        background-color: rgb(4, 4, 69);
+    }
+    .checkout__sidebar__tools, .checkout__sidebar__logout__text, .checkout__sidebar__general, .checkout__sidebar__logo, .logout__icon{
+        color: #fff;
+    }
+    .checkout__logo__image{
+        width: 30px;
+        height: 30px;
+        padding-top: 3rem;
+        margin-right: 0.2rem;
+    }
+    .checkout__sidebar__logo{
+        font-size: 16px !important;
+        padding-top: 3.5rem !important;
+    }
+    .logout__modal__text{
+        font-size: 12px;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    
+    
+    .checkout__logo__image{
+        width: 30px;
+        height: 30px;
+        padding-top: 3rem;
+        margin-right: 0.2rem;
+    }
+    .checkout__sidebar__logo{
+        font-size: 14px;
+        padding-top: 3.5rem;
+    }
+
+    .checkout__sidebar__general{
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 10px;
+        /* border: 1px solid red; */
+    }
+    .checkout__sidebar__tools{
+        font-size: 18px;
+    }
+    .logout__modal__text{
+    }
+    .checkout__sidebar__feature__name{
+        font-size: 10px;
+    }
+    .checkout__sidebar__features, .checkout__sidebar__features__locked {
+        padding-left: 1rem !important;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1350px) {
+    
+    
+    .checkout__logo__image{
+        width: 50px;
+        height: 50px;
+        padding-top: 3rem;
+        margin-right: 0.2rem;
+    }
+    .checkout__sidebar__logo{
+        font-size: 20px;
+        padding-top: 4rem;
+    }
+
+    .checkout__sidebar__general{
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 10px;
+        /* border: 1px solid red; */
+    }
+    .checkout__sidebar__tools{
+        font-size: 18px;
+    }
+    .logout__modal__text{
+    }
+    .checkout__sidebar__feature__name{
+        font-size: 10px;
+    }
+    .checkout__sidebar__features, .checkout__sidebar__features__locked {
+        padding-left: 1rem !important;
+    }
+}

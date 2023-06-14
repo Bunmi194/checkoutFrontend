@@ -14,7 +14,7 @@ const override = css`
 `;
 
 
-const Transfer = ({ setActivityCounter }) => {
+const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
     const inputRefs = Array.from({ length: 6 }).map(() => createRef(null));
     // const inputRefs = new Array(6).fill(useRef(null));
     const [ idempotentKey, setIdempotentKey ] = useState("");
@@ -32,13 +32,8 @@ const Transfer = ({ setActivityCounter }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [accountNumber, amount]);
 
-    console.log("userDetails: ", userDetails);
-    // console.log("idempotentKey: ", idempotentKey);
-
 
     const handleInputChange = (index, e) => {
-      console.log("key: ", e);
-      // console.log("token: ", token);
       const value = e.target.value;
       const nextIndex = index + 1;
       if(e.key === "Backspace" && index > 0){
@@ -46,23 +41,11 @@ const Transfer = ({ setActivityCounter }) => {
         inputRefs[index - 1].current.value = "";
         inputRefs[index - 1].current.focus();
       }
-      // console.log("nextIndex: ", nextIndex);
-  //1234
-      // Set the value of the current input field
-      // ...
-  
       if (value.length >= 1 && nextIndex < inputRefs.length) {
         // Move focus to the next input field
-        console.log("index: ", index);
-        console.log("value: ", value);
-        // console.log("inputRefs: ", inputRefs);
         let y = nextIndex;
         inputRefs[index+1].current.focus();
-        console.log("inputRefs Number: ", inputRefs[index].current.value);
-        // console.log("token: ", token);
-        console.log("inputRefsIN: ", inputRefs);
       }
-      // setToken((prev)=> prev += inputRefs[index].current.value);
         const newInputValues = [...inputValues];
         newInputValues[index] = value;
         setInputValues(newInputValues);
@@ -110,6 +93,7 @@ const Transfer = ({ setActivityCounter }) => {
           return;
         }
         setIsVerified(false);
+        setOnRightToggle(false);
         setIsModalOpen(true);
         console.log("result: ", result);
         return;
@@ -168,8 +152,6 @@ const Transfer = ({ setActivityCounter }) => {
           toast.success(`${result.message}`, {
             position: toast.POSITION.TOP_RIGHT
           });
-          // setActivityCounter(prev => prev + 1);
-          // alert("done")
           setTimeout(()=>{
             window.open("/dashboard", "_self");
           }, 3000);
@@ -181,23 +163,8 @@ const Transfer = ({ setActivityCounter }) => {
         return;
       
     }
-
-    // const validateToken = () => {
-    //   // setIsModalOpen(false);
-    //   const token = inputValues.join("");
-    //   console.log("type: ", typeof inputValues);
-    //   console.log("value: ", token);
-    //   alert(`Token is ${token}`);
-    // }
-    
     
     const verifyAccount = async () => {
-      
-      console.log("accountNumber: ", accountNumber)
-      console.log("Number(amount): ", Number(amount))
-      console.log("!Number(amount): ", !Number(amount))
-      console.log("length: ", idempotentKey.length)
-      console.log("idempotentKey: ", idempotentKey)
       setIsVerified(true);
       if(!accountNumber || !Number(amount) || !idempotentKey){
         setIsVerified(false);
@@ -281,6 +248,9 @@ const Transfer = ({ setActivityCounter }) => {
             backgroundColor: 'rgba(0, 0, 0, 0.8)'
           },
           content: {
+            overflow: "scroll",
+            objectFit: "center",
+            width: "inherit",
           }
         }}
         > 

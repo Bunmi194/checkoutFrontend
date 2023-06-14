@@ -11,3 +11,27 @@
     position: fixed;
     right: 0px;
 }
+.checkout__hide__rightsidebar{
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    .checkout__rightsidebar__overall__container{
+        display: none;
+    }
+    .checkout__rightsidebar__overall__container__show{
+        display: block;
+        width: 250px;
+    }
+    .checkout__hide__rightsidebar{
+        display: block;
+        position: absolute;
+        font-size: 24px;
+        font-weight: bold;
+        color: navy;
+        border: 1px solid navy;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #fff;
+    }
+}

@@ -14,7 +14,7 @@ const override = css`
   border-color: red;
 `;
 
-const Main = ({ dataLoaded, setDataLoaded, activityCounter }) => {
+const Main = ({ dataLoaded, setDataLoaded, onSidebarToggle, setOnSidebarToggle, setOnRightToggle }) => {
   const [ transferTotal, setTransferTotal ] = useState(0);
   const [ fundingTotal, setFundingTotal ] = useState(0);
   const [ withdrawTotal, setWithdrawTotal ] = useState(0);
@@ -40,8 +40,6 @@ const Main = ({ dataLoaded, setDataLoaded, activityCounter }) => {
       },
     });
     const result = await statistics.json();
-    // console.log("result: ", result);
-    // console.log("result STATUS: ", result.status);
     if(!result.status){
       toast.error(`Error: ${result.message}`, {
         position: toast.POSITION.TOP_RIGHT
@@ -68,7 +66,6 @@ const Main = ({ dataLoaded, setDataLoaded, activityCounter }) => {
   useEffect(()=>{
     fetchStatistics();
   }, []);//activityCounter
-  console.log("transferTotal: ", transferTotal);
   return (
     <>    
     
@@ -80,7 +77,7 @@ const Main = ({ dataLoaded, setDataLoaded, activityCounter }) => {
       :
       
       <div className='checkout__main__container'>
-          <Header />
+          <Header onSidebarToggle={onSidebarToggle} setOnSidebarToggle={setOnSidebarToggle} setOnRightToggle={setOnRightToggle} />
           <Statistics transferTotal={transferTotal} fundingTotal={fundingTotal} withdrawTotal={withdrawTotal} balance={balance} />
           <Graph transferDetailsLength={transferDetailsLength} withdrawDetailsLength={withdrawDetailsLength} fundingDetailsLength={fundingDetailsLength} transferDetails={transferDetails} fundingDetails={fundingDetails} withdrawDetails={withdrawDetails}/>
           <Records lastThreeTransactions={lastThreeTransactions} />

@@ -73,9 +73,8 @@ const bankDetailsFromCBN = [
     name: "WEMA"
   },
 ]
-const Withdraw = ({ setActivityCounter }) => {
+const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
   const newBank = bankDetailsFromCBN.sort((a,b)=> a.name > b.name? 1 : -1)
-  console.log("newBank: ", newBank);
     const inputRefs = Array.from({ length: 6 }).map(() => createRef(null));
     // const inputRefs = new Array(6).fill(useRef(null));
     const [ idempotentKey, setIdempotentKey ] = useState("");
@@ -96,8 +95,6 @@ const Withdraw = ({ setActivityCounter }) => {
     }, [accountNumber, amount]);
 
     const handleInputChange = (index, e) => {
-      console.log("key: ", e);
-      // console.log("token: ", token);
       const value = e.target.value;
       const nextIndex = index + 1;
       if(e.key === "Backspace" && index > 0){
@@ -105,21 +102,10 @@ const Withdraw = ({ setActivityCounter }) => {
         inputRefs[index - 1].current.value = "";
         inputRefs[index - 1].current.focus();
       }
-      // console.log("nextIndex: ", nextIndex);
-  //1234
-      // Set the value of the current input field
-      // ...
-  
       if (value.length >= 1 && nextIndex < inputRefs.length) {
         // Move focus to the next input field
-        console.log("index: ", index);
-        console.log("value: ", value);
-        // console.log("inputRefs: ", inputRefs);
         let y = nextIndex;
         inputRefs[index+1].current.focus();
-        console.log("inputRefs Number: ", inputRefs[index].current.value);
-        // console.log("token: ", token);
-        console.log("inputRefsIN: ", inputRefs);
       }
       // setToken((prev)=> prev += inputRefs[index].current.value);
         const newInputValues = [...inputValues];
@@ -170,7 +156,6 @@ const Withdraw = ({ setActivityCounter }) => {
             position: toast.POSITION.TOP_RIGHT
           });
           setName("");
-          console.log("name: ", name);
           return;
         }
         setIsVerified(false);
@@ -231,10 +216,10 @@ const Withdraw = ({ setActivityCounter }) => {
           });
           setName("");
           setIdempotentKey("");
-          console.log("name: ", name);
           return;
         }
         setIsVerified(false);
+        setOnRightToggle(false);
         setIsModalOpen(true);
         console.log("result: ", result);
         return;
@@ -242,11 +227,6 @@ const Withdraw = ({ setActivityCounter }) => {
     }
 
     const verifyAccount = async () => {
-      console.log("accountNumber: ", accountNumber)
-      console.log("bankCode: ", bankCode)
-      console.log("Number(amount): ", Number(amount))
-      console.log("!Number(amount): ", !Number(amount))
-      
       if(!idempotentKey){
         setIdempotentKey(`${userDetails.user.id}${new Date().getTime()}`);
       }
@@ -304,7 +284,7 @@ const Withdraw = ({ setActivityCounter }) => {
                 <div className='checkout__withdraw__div'>
                     <input type="text" placeholder="Enter amount..." className='checkout__withdraw__amount' onChange={(e)=>setAmount(e.target.value)} value={amount} />
                     <select className='checkout__withdraw__select' onChange={(e)=>setBankCode(e.target.value)} value={bankCode}>
-                      <option value="" >BANK</option>
+                      <option value="" className='checkout__withdraw__bank'>BANK</option>
                         {
                           (newBank && newBank.map((bank, index) => {
                             return <option key={++index} value={bank.code}>{`${bank.name}`.toUpperCase()}</option>
@@ -339,6 +319,9 @@ const Withdraw = ({ setActivityCounter }) => {
             backgroundColor: 'rgba(0, 0, 0, 0.8)'
           },
           content: {
+            overflow: "scroll",
+            objectFit: "center",
+            width: "inherit",
           }
         }}
         > 

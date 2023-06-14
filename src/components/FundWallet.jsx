@@ -9,7 +9,7 @@ const override = css`
   border-color: red;
 `;
 
-const FundWallet = ({ setActivityCounter }) => {
+const FundWallet = ({ setActivityCounter, setOnRightToggle }) => {
   const [ amount, setAmount ] = useState("");
   const [ isFunding, setIsFunding ] = useState(false);
   let token;
@@ -19,6 +19,7 @@ const FundWallet = ({ setActivityCounter }) => {
     token = userDetails.token;
   });
   const fundWallet = async () => {
+    setOnRightToggle(false);
     setIsFunding(true);
     if(!amount || !Number(amount)){
       setIsFunding(false);
@@ -76,7 +77,7 @@ const FundWallet = ({ setActivityCounter }) => {
                 <input type="text" className="checkout__fundwallet__input" placeholder="Enter amount..." onChange={(e)=>setAmount(e.target.value)}/>
             </div>
             <div className='checkout__fundwallet__button__div'>
-                <button type="button" className="checkout__fundwallet__btn checkout__btn__click" onClick={fundWallet} disabled={isFunding}>Fund</button >
+                <button type="button" className="checkout__fundwallet__btn checkout__btn__click" onClick={fundWallet} disabled={isFunding}><span className='checkout__fund__text'>Fund</span></button >
             </div>
         </div>
     </div>

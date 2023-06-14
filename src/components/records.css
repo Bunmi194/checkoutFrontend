@@ -9,6 +9,10 @@
     padding: 20px 10px;
     background-color: rgb(99, 131, 131);
 }
+.checkout__record__no__record__text{
+    text-align: center;
+    margin-top: 30px;
+}
 .records__no__record__div{
     position: absolute;
     display: flex;
@@ -75,4 +79,57 @@
     background-color: rgb(216, 234, 216);
     color: rgb(100, 92, 22);
     border-radius: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .my-table {
+        width: 80%;
+        border-collapse: collapse;
+    }
+    .my-table td {
+        padding: 2px;
+        height: 30px;
+        font-size: 8px;
+    }
+    .my-table thead td {
+        font-weight: bold;
+        font-size: 10px;
+    }
+    .records__no__record__img{
+        width: 15rem;
+        height: 15rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid red;
+    }
+
+    .records__no__record__div{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        padding-top: 4rem;
+    }
+
+    
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+    .my-table {
+        width: 80%;
+        border-collapse: collapse;
+    }
+    .my-table td {
+        padding: 2px;
+        height: 30px;
+        font-size: 8px;
+    }
+    .my-table thead td {
+        font-weight: bold;
+        font-size: 10px;
+    }
+    
 }

@@ -1,8 +1,18 @@
 import React from 'react'
 import "./header.css";
 import { IoIosNotificationsOutline } from "react-icons/io";
-const Header = () => {
+const Header = ({ onSidebarToggle, setOnSidebarToggle, setOnRightToggle }) => {
+    const toggleSidebar = () => {
+        setOnRightToggle(false);
+        setOnSidebarToggle(prev => !prev);
+
+    }
+    const closeSidebar = () => {
+        toggleSidebar();
+    };
+
   return (
+    <>
     <div className='checkout__main__header__container'>
         <div className='checkout__main__header__content'>
             <h3>Overview</h3>
@@ -17,6 +27,13 @@ const Header = () => {
             </div>
         </div>
     </div>
+        {
+          !onSidebarToggle?
+          <label class={`${onSidebarToggle? "hide" : "show"} hamb`} for="side-menu" onClick={toggleSidebar}><span class="hamb-line"></span></label>
+          :
+          <span onClick={closeSidebar} className="close__sidebar">X</span>
+        }
+    </>
   )
 }
 

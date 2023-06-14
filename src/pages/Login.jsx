@@ -54,8 +54,6 @@ function LoginPage({setUserAccess}) {
       
     };
 
-    console.log("userObject: ", userObject);
-
     localStorage.setItem("userDetails", JSON.stringify(userObject));
     setUserAccess(true);
     window.open('/dashboard', "_self");
@@ -145,7 +143,7 @@ function LoginPage({setUserAccess}) {
                 setPassword(e.target.value);
               }} className="checkout__login__input"/>
             </div>
-            <button disabled={isLoading} type="submit" className="checkout__btnlogin" onClick={handleLogin}>{isLoading? <ClipLoader color="#000" loading={true} css={override} size={15} /> : "Login"}</button>
+            <button disabled={isLoading} type="submit" className="checkout__btnlogin" onClick={handleLogin}>{isLoading? <ClipLoader color="#fff" loading={true} css={override} size={15} /> : "Login"}</button>
             <div className='chat__or__block'>
               <div className='chat__line__div'></div>
               <div>

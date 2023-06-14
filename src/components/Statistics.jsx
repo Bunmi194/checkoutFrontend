@@ -3,12 +3,6 @@ import { FiArrowUpRight } from "react-icons/fi";
 import "./statistics.css";
 
 const Statistics = ({ transferTotal, withdrawTotal, fundingTotal, balance }) => {
-    // const userDetails = localStorage.getItem('userDetails');
-    // console.log("userDetails: ", userDetails)
-    console.log("balance: ", balance);
-    console.log("transferTotal: ", transferTotal);
-    console.log("withdrawTotal: ", withdrawTotal);
-
 
 const statistics = [
     {
@@ -17,7 +11,7 @@ const statistics = [
         source: "Funding"
     },
     {
-        title: "Available Balance",
+        title: "Balance",
         amount: Number(balance).toLocaleString(),
         source: "Wallet"
     },

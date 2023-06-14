@@ -61,9 +61,7 @@ useEffect(()=>{
                     :
                     <div className='records__no__record__div'>
                         <div>
-                            <h3>No Record Found</h3>
-                        </div>
-                        <div>
+                            <h3 className='checkout__record__no__record__text'>No Record Found</h3>
                             <img src='/memo.png' alt="No Record" className='records__no__record__img' />
                         </div>
                     </div>

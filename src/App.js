@@ -9,25 +9,45 @@ import { ToastContainer } from "react-toastify";
 import "./App.css";
 
 function App() {
-  const [ userAccess, setUserAccess ] = useState(false);
-  
-  const userDetails = localStorage.getItem('userDetails');
-  useEffect(()=>{
-  console.log("userDetailsAPP: ", userDetails);
-  if(userDetails){
-    setUserAccess(userDetails);
-  }
-  console.log("userDetailsINAPP: ", userDetails);
-  }, [])
+  const [userAccess, setUserAccess] = useState(false);
+
+  const userDetails = localStorage.getItem("userDetails");
+  useEffect(() => {
+    console.log("userDetailsAPP: ", userDetails);
+    if (userDetails) {
+      setUserAccess(userDetails);
+    }
+  }, []);
   return (
     <div className="checkout__dashboard__container__app">
-    <ToastContainer />
+      <ToastContainer />
       <Routes>
-        <Route path="/" element={!userAccess? <LoginPage setUserAccess={setUserAccess}/> : <Navigate to="/dashboard" />} ></Route>
-        <Route path="/register" element={!userAccess? <SignupPage /> : <Navigate to="/dashboard" />}></Route>
+        <Route
+          path="/"
+          element={
+            !userAccess ? (
+              <LoginPage setUserAccess={setUserAccess} />
+            ) : (
+              <Navigate to="/dashboard" />
+            )
+          }
+        ></Route>
+        <Route
+          path="/register"
+          element={!userAccess ? <SignupPage /> : <Navigate to="/dashboard" />}
+        ></Route>
         <Route path="/success" element={<Success />}></Route>
         <Route path="/verify" element={<Verification />}></Route>
-        <Route path="/dashboard" element={ (!userAccess && !userDetails)? <Navigate to="/" /> : <Dashboard setUserAccess={setUserAccess} /> } ></Route>
+        <Route
+          path="/dashboard"
+          element={
+            !userAccess && !userDetails ? (
+              <Navigate to="/" />
+            ) : (
+              <Dashboard setUserAccess={setUserAccess} />
+            )
+          }
+        ></Route>
       </Routes>
     </div>
   );

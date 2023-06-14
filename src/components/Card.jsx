@@ -6,7 +6,6 @@ const Card = () => {
   let userDetails = JSON.parse(localStorage.getItem("userDetails"));;
   let accountNumber = userDetails.user.id;
 
-  console.log("accountNumber: ", accountNumber);
   return (
     <div className='checkout__card__container'>
         <div className='checkout__rightsidebar__container'>
