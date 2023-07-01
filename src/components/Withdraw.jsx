@@ -73,6 +73,8 @@ const bankDetailsFromCBN = [
     name: "WEMA"
   },
 ]
+
+const BASEURL = process.env.REACT_APP_APIURL;
 const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
   const newBank = bankDetailsFromCBN.sort((a,b)=> a.name > b.name? 1 : -1)
     const inputRefs = Array.from({ length: 6 }).map(() => createRef(null));
@@ -139,7 +141,7 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
           nameOnAccount: name,
           otp
         }
-        const accountDetails = await fetch("http://localhost:4000/v1/withdraw/initiate", {
+        const accountDetails = await fetch(`${BASEURL}/v1/withdraw/initiate`, {
           method: "POST",
           headers: {
             "authorization": `Bearer ${userDetails.token}`,
@@ -198,7 +200,7 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
           currency: "NGN",
           bank: bankCode,
         }
-        const generateOTP = await fetch("http://localhost:4000/v1/withdraw/otp", {
+        const generateOTP = await fetch(`${BASEURL}/v1/withdraw/otp`, {
           method: "POST",
           headers: {
             "authorization": `Bearer ${userDetails.token}`,
@@ -245,7 +247,7 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
         currency: "NGN",
         bank: bankCode,
       }
-      const accountDetails = await fetch("http://localhost:4000/v1/withdraw", {
+      const accountDetails = await fetch(`${BASEURL}/v1/withdraw`, {
         method: "POST",
         headers: {
           "authorization": `Bearer ${userDetails.token}`,

@@ -13,7 +13,7 @@ const override = css`
   border-color: red;
 `;
 
-
+const BASEURL = process.env.REACT_APP_APIURL;
 const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
     const inputRefs = Array.from({ length: 6 }).map(() => createRef(null));
     // const inputRefs = new Array(6).fill(useRef(null));
@@ -71,7 +71,7 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
           accountNumber,
           currency: "NGN"
         }
-        const generateOTP = await fetch("http://localhost:4000/v1/transfer/otp", {
+        const generateOTP = await fetch(`${BASEURL}/v1/transfer/otp`, {
           method: "POST",
           headers: {
             "authorization": `Bearer ${userDetails.token}`,
@@ -121,7 +121,7 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
           currency: "NGN",
           otp
         }
-        const accountDetails = await fetch("http://localhost:4000/v1/transfer/process", {
+        const accountDetails = await fetch(`${BASEURL}/v1/transfer/process`, {
           method: "POST",
           headers: {
             "authorization": `Bearer ${userDetails.token}`,
@@ -179,7 +179,7 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
         accountNumber,
         currency: "NGN"
       }
-      const accountDetails = await fetch("http://localhost:4000/v1/transfer", {
+      const accountDetails = await fetch(`${BASEURL}/v1/transfer`, {
         method: "POST",
         headers: {
           "authorization": `Bearer ${userDetails.token}`,

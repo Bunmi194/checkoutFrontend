@@ -5,6 +5,7 @@ import RightSideBar from "../components/RightSideBar";
 import "./dashboard.css";
 import { toast } from "react-toastify";
 
+const BASEURL = process.env.REACT_APP_APIURL;
 const verifyTransaction = async (ref, token) => {
   if (!ref) {
     toast.error("Transaction failed", {
@@ -12,7 +13,7 @@ const verifyTransaction = async (ref, token) => {
     });
     return;
   }
-  const verify = await fetch(`http://localhost:4000/v1/fund/verify/${ref}`, {
+  const verify = await fetch(`${BASEURL}/v1/fund/verify/${ref}`, {
     method: "GET",
     headers: {
       authorization: `Bearer ${token}`,

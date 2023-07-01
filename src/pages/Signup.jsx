@@ -11,6 +11,7 @@ const override = css`
   border-color: red;
 `;
 
+const BASEURL = process.env.REACT_APP_APIURL;
 function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +22,7 @@ function SignupPage() {
   const navigate = useNavigate();
 
   const handleGoogleSignup = () => {
-    window.open("http://localhost:4000/v1/strategy/auth/google", "_self");
+    window.open(`${BASEURL}/v1/strategy/auth/google`, "_self");
   };
 
   const handleSignup = async (e) => {
@@ -42,7 +43,7 @@ function SignupPage() {
         });
         return;
       }
-      const signup = await fetch("http://localhost:4000/v1/users/register", {
+      const signup = await fetch(`${BASEURL}/v1/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

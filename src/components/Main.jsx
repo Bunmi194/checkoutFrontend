@@ -13,6 +13,7 @@ const override = css`
   border-color: red;
 `;
 
+const BASEURL = process.env.REACT_APP_APIURL;
 const Main = ({ dataLoaded, setDataLoaded, onSidebarToggle, setOnSidebarToggle, setOnRightToggle }) => {
   const [ transferTotal, setTransferTotal ] = useState(0);
   const [ fundingTotal, setFundingTotal ] = useState(0);
@@ -30,7 +31,7 @@ const Main = ({ dataLoaded, setDataLoaded, onSidebarToggle, setOnSidebarToggle, 
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
   const fetchStatistics = async () => {
-    const statistics = await fetch("http://localhost:4000/v1/statistics", {
+    const statistics = await fetch(`${BASEURL}/v1/statistics`, {
       method: "GET",
       headers: {
         "authorization": `Bearer ${userDetails.token}`,

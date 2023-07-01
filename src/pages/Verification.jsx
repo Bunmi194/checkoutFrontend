@@ -11,6 +11,7 @@ const override = css`
   border-color: red;
 `;
 
+const BASEURL = process.env.REACT_APP_APIURL;
 const Verification = () => {
   const [verifying, setVerifying] = useState(true);
   const [failed, setFailed] = useState(false);
@@ -25,7 +26,7 @@ const Verification = () => {
         navigate("/");
       }
       const verify = await fetch(
-        `http://localhost:4000/v1/users/verify/${token}`,
+        `${BASEURL}/v1/users/verify/${token}`,
         {
           method: "GET",
           headers: {

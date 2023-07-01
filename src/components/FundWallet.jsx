@@ -3,7 +3,7 @@ import "./fundwallet.css";
 import { toast } from "react-toastify";
 import { useEffect } from 'react';
 
-
+const BASEURL = process.env.REACT_APP_APIURL;
 const FundWallet = ({ setActivityCounter, setOnRightToggle }) => {
   const [ amount, setAmount ] = useState("");
   const [ isFunding, setIsFunding ] = useState(false);
@@ -40,7 +40,7 @@ const FundWallet = ({ setActivityCounter, setOnRightToggle }) => {
       redirect_url: "https://www.google.com",
     }
 
-    const fundAccount = await fetch(`http://localhost:4000/v1/fund`, {
+    const fundAccount = await fetch(`${BASEURL}/v1/fund`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
