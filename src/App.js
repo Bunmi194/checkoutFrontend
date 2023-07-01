@@ -20,8 +20,8 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="checkout__dashboard__container__app">
-      <ToastContainer />
+    // <div className="checkout__dashboard__container__app">
+    //   <ToastContainer />
       <Routes>
         <Route
           path="/"
@@ -50,7 +50,7 @@ function App() {
           }
         ></Route>
       </Routes>
-    </div>
+    // </div>
   );
 }
 
