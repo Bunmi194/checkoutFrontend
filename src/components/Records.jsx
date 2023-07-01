@@ -51,7 +51,7 @@ useEffect(()=>{
                     lastThreeTransactions && lastThreeTransactions.map((record, index)=> (
                         <tr key={record? record.id : ""} className="checkout__main__rows">
                             <td>{++index}</td>
-                            <td>{`${record.User? record.User.firstName : ""} ${record.User? record.User.lastName : ""} (${record? record.recipientId : "self"})`}</td>
+                            <td>{`${record.User? record.User.firstName : ""} ${record.User? record.User.lastName : ""} (${record.recipientId? record.recipientId : "self"})`}</td>
                             <td>{Number(record? record.amount : 0).toLocaleString() || ""}</td>
                             <td>{record? `${record.typeOfTransaction}`.toUpperCase() : ""}</td>
                             <td>{record? formatDate(record.createdAt) : ""}</td>
