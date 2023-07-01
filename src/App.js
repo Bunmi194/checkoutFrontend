@@ -23,7 +23,9 @@ function App() {
   return (
     // <div className="checkout__dashboard__container__app">
     //   <ToastContainer />
-      <Routes>
+    <Routes>
+        <Route path="/success" element={<Success />}></Route>
+        <Route path="/verify" element={<Verification />}></Route>
         <Route
           path="/"
           element={
@@ -38,8 +40,6 @@ function App() {
           path="/register"
           element={!userAccess ? <SignupPage /> : <Navigate to="/dashboard" />}
         ></Route>
-        <Route path="/success" element={<Success />}></Route>
-        <Route path="/verify" element={<Verification />}></Route>
         <Route
           path="/dashboard"
           element={
