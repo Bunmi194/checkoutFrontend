@@ -29,7 +29,7 @@ const Header = ({ onSidebarToggle, setOnSidebarToggle, setOnRightToggle }) => {
     </div>
         {
           !onSidebarToggle?
-          <label class={`${onSidebarToggle? "hide" : "show"} hamb`} for="side-menu" onClick={toggleSidebar}><span class="hamb-line"></span></label>
+          <label className={`${onSidebarToggle? "hide" : "show"} hamb`} for="side-menu" onClick={toggleSidebar}><span class="hamb-line"></span></label>
           :
           <span onClick={closeSidebar} className="close__sidebar">X</span>
         }
