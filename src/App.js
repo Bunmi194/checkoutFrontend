@@ -5,7 +5,6 @@ import LoginPage from "./pages/Login";
 import SignupPage from "./pages/Signup";
 import Success from "./pages/Success";
 import Verification from "./pages/Verification";
-// eslint-disable-next-line no-unused-vars
 import { ToastContainer } from "react-toastify";
 import "./App.css";
 
@@ -21,8 +20,8 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    // <div className="checkout__dashboard__container__app">
-    //   <ToastContainer />
+    <div className="checkout__dashboard__container__app">
+      <ToastContainer />
     <Routes>
         <Route path="/success" element={<Success />}></Route>
         <Route path="/verify" element={<Verification />}></Route>
@@ -51,7 +50,7 @@ function App() {
           }
         ></Route>
       </Routes>
-    // </div>
+    </div>
   );
 }
 
