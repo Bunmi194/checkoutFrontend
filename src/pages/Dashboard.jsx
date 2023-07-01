@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import Main from "../components/Main";
 import RightSideBar from "../components/RightSideBar";
 import "./dashboard.css";
 import { toast } from "react-toastify";
-import { css } from "@emotion/react";
-import { ClipLoader } from "react-spinners";
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
+
 const verifyTransaction = async (ref, token) => {
   if (!ref) {
     toast.error("Transaction failed", {
@@ -48,13 +41,13 @@ const verifyTransaction = async (ref, token) => {
 const Dashboard = ({ setUserAccess }) => {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [activityCounter, setActivityCounter] = useState(0);
-  const { paramsId } = useParams();
   const [onSidebarToggle, setOnSidebarToggle] = useState(false);
   const [onRightToggle, setOnRightToggle] = useState(false);
   let token;
 
   useEffect(() => {
     const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     token = userDetails.token;
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("trxref");

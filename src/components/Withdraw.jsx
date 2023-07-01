@@ -104,6 +104,7 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
       }
       if (value.length >= 1 && nextIndex < inputRefs.length) {
         // Move focus to the next input field
+        // eslint-disable-next-line no-unused-vars
         let y = nextIndex;
         inputRefs[index+1].current.focus();
       }

@@ -31,6 +31,7 @@ function LoginPage({setUserAccess}) {
     if(token && googleEmail && firstName && lastName && id) {
       googleLoginOrSignup();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGoogleLogin = () => {

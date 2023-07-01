@@ -8,9 +8,8 @@ import { IoAnalyticsOutline } from "react-icons/io5";
 import { BiSupport } from "react-icons/bi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import { AiOutlineLock } from "react-icons/ai";
 import Modal from "react-modal";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const features = [
     {
@@ -49,7 +48,6 @@ const tools = [
 const Sidebar = ({ setUserAccess, setDataLoaded, onSidebarToggle,  setOnSidebarToggle, setOnRightToggle }) => {
 
     const [ isModalOpen, setIsModalOpen ] = useState(false);
-    const [ feature, setFeature ] = useState("");
     const navigate = useNavigate();
 
     const closeModal = () => {

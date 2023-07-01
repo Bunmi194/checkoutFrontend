@@ -26,9 +26,9 @@ const Main = ({ dataLoaded, setDataLoaded, onSidebarToggle, setOnSidebarToggle, 
   const [ fundingDetailsLength, setFundingDetailsLength ] = useState(0);
   const [ withdrawDetailsLength, setWithdrawDetailsLength ] = useState(0);
   const [ lastThreeTransactions, setLastThreeTransactions ] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [ loaded, setLoaded ] = useState(false);
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-  const navigate = useNavigate();
 
   const fetchStatistics = async () => {
     const statistics = await fetch("http://localhost:4000/v1/statistics", {
@@ -65,6 +65,7 @@ const Main = ({ dataLoaded, setDataLoaded, onSidebarToggle, setOnSidebarToggle, 
 
   useEffect(()=>{
     fetchStatistics();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);//activityCounter
   return (
     <>    

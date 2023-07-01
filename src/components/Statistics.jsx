@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { FiArrowUpRight } from "react-icons/fi";
+import React, { useEffect } from 'react';
 import "./statistics.css";
 
 const Statistics = ({ transferTotal, withdrawTotal, fundingTotal, balance }) => {

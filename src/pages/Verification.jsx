@@ -58,6 +58,7 @@ const Verification = () => {
   useEffect(() => {
     //make verification check
     verifyUserAccount();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="verification-message">

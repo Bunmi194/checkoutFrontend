@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./transfer.css";
 import "../fonts.css";
 import { css } from '@emotion/react';
@@ -43,6 +43,7 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
       }
       if (value.length >= 1 && nextIndex < inputRefs.length) {
         // Move focus to the next input field
+        // eslint-disable-next-line no-unused-vars
         let y = nextIndex;
         inputRefs[index+1].current.focus();
       }

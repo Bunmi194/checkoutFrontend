@@ -17,6 +17,7 @@ function App() {
     if (userDetails) {
       setUserAccess(userDetails);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="checkout__dashboard__container__app">

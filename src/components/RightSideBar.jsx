@@ -4,7 +4,6 @@ import Card from "./Card";
 import FundWallet from "./FundWallet";
 import Transfer from "./Transfer";
 import Withdraw from "./Withdraw";
-import Chart from "./Chart";
 
 const RightSideBar = ({ activityCounter, setActivityCounter, onRightToggle, setOnRightToggle }) => {
 

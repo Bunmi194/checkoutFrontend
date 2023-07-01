@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import "./fundwallet.css";
 import { toast } from "react-toastify";
-import { css } from '@emotion/react';
 import { useEffect } from 'react';
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
+
 
 const FundWallet = ({ setActivityCounter, setOnRightToggle }) => {
   const [ amount, setAmount ] = useState("");
@@ -16,6 +11,7 @@ const FundWallet = ({ setActivityCounter, setOnRightToggle }) => {
 
   useEffect(()=>{
     const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     token = userDetails.token;
   });
   const fundWallet = async () => {
