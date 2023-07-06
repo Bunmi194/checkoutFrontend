@@ -59,7 +59,8 @@ function LoginPage({setUserAccess}) {
 
     localStorage.setItem("userDetails__checkout__app", JSON.stringify(userObject));
     setUserAccess(true);
-    window.open('/dashboard', "_self");
+    navigate("/dashboard");
+    // window.open('/dashboard', "_self");
     return;
 
   }
