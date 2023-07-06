@@ -57,7 +57,7 @@ function LoginPage({setUserAccess}) {
       
     };
 
-    localStorage.setItem("userDetails", JSON.stringify(userObject));
+    localStorage.setItem("userDetails__checkout__app", JSON.stringify(userObject));
     setUserAccess(true);
     window.open('/dashboard', "_self");
     return;
@@ -96,7 +96,7 @@ function LoginPage({setUserAccess}) {
       return;
     };
     setIsLoading(false);
-    localStorage.setItem("userDetails", JSON.stringify(result));
+    localStorage.setItem("userDetails__checkout__app", JSON.stringify(result));
     setUserAccess(true);
     toast.success(`${result.message}`, {
       position: toast.POSITION.TOP_RIGHT

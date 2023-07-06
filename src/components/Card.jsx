@@ -3,7 +3,7 @@ import "./card.css";
 
 const Card = () => {
 
-  let userDetails = JSON.parse(localStorage.getItem("userDetails"));;
+  let userDetails = JSON.parse(localStorage.getItem("userDetails__checkout__app"));;
   let accountNumber = userDetails.user.id;
 
   return (

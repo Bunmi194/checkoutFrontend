@@ -11,7 +11,7 @@ import "./App.css";
 function App() {
   const [userAccess, setUserAccess] = useState(false);
 
-  const userDetails = localStorage.getItem("userDetails");
+  const userDetails = localStorage.getItem("userDetails__checkout__app");
   useEffect(() => {
     console.log("userDetailsAPP: ", userDetails);
     if (userDetails) {

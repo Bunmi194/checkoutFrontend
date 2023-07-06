@@ -64,7 +64,7 @@ const Sidebar = ({ setUserAccess, setDataLoaded, onSidebarToggle,  setOnSidebarT
     }
     const logMeOut = (feature) => {
         setUserAccess(false);
-        localStorage.removeItem("userDetails");
+        localStorage.removeItem("userDetails__checkout__app");
         setDataLoaded(false);
         navigate("/");
     }

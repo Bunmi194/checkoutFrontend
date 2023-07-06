@@ -25,7 +25,7 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
     // const [ token, setToken ] = useState("");
     const [ isVerified, setIsVerified ] = useState(false);
     const [ isModalOpen, setIsModalOpen ] = useState(false);
-    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    const userDetails = JSON.parse(localStorage.getItem("userDetails__checkout__app"));
     
     useEffect(() => {
       setIdempotentKey(`${userDetails.user.id}${new Date().getTime()}`);
