@@ -14,8 +14,8 @@ const Success = () => {
   };
   useEffect(() => {
     localStorage.getItem("userEmail")
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      ? (mail = JSON.parse(localStorage.getItem("userEmail")))
+      ? // eslint-disable-next-line react-hooks/exhaustive-deps
+        (mail = JSON.parse(localStorage.getItem("userEmail")))
       : (mail = "sample@gmail.com");
   }, []);
 

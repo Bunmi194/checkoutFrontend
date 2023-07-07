@@ -47,7 +47,9 @@ const Dashboard = ({ setUserAccess }) => {
   let token;
 
   useEffect(() => {
-    const userDetails = JSON.parse(localStorage.getItem("userDetails__checkout__app"));
+    const userDetails = JSON.parse(
+      localStorage.getItem("userDetails__checkout__app")
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
     token = userDetails.token;
     const params = new URLSearchParams(window.location.search);

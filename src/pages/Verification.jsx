@@ -25,15 +25,12 @@ const Verification = () => {
       if (!token) {
         navigate("/");
       }
-      const verify = await fetch(
-        `${BASEURL}/v1/users/verify/${token}`,
-        {
-          method: "GET",
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      );
+      const verify = await fetch(`${BASEURL}/v1/users/verify/${token}`, {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
       const result = await verify.json();
       if (result && result.status) {
         setVerifying(false);
@@ -58,7 +55,7 @@ const Verification = () => {
   useEffect(() => {
     //make verification check
     verifyUserAccount();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="verification-message">

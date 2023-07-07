@@ -1,6 +1,7 @@
-import React, { useState, createRef, useEffect } from 'react';
-import "./withdraw.css";import "../fonts.css";
-import { css } from '@emotion/react';
+import React, { useState, createRef, useEffect } from "react";
+import "./withdraw.css";
+import "../fonts.css";
+import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import Modal from "react-modal";
@@ -14,290 +15,329 @@ const override = css`
 const bankDetailsFromCBN = [
   {
     code: "057",
-    name: "ZENITH"
+    name: "ZENITH",
   },
   {
     code: "044",
-    name: "ACCESS"
+    name: "ACCESS",
   },
   {
     code: "050",
-    name: "ECOBANK"
+    name: "ECOBANK",
   },
   {
     code: "070",
-    name: "FIDELITY"
+    name: "FIDELITY",
   },
   {
     code: "011",
-    name: "FIRSTBANK"
+    name: "FIRSTBANK",
   },
   {
     code: "214",
-    name: "FCMB"
+    name: "FCMB",
   },
   {
     code: "058",
-    name: "GTBANK"
+    name: "GTBANK",
   },
   {
     code: "030",
-    name: "HERITAGE"
+    name: "HERITAGE",
   },
   {
     code: "082",
-    name: "KEYSTONE"
+    name: "KEYSTONE",
   },
   {
     code: "039",
-    name: "STANBIC"
+    name: "STANBIC",
   },
   {
     code: "232",
-    name: "STERLING"
+    name: "STERLING",
   },
   {
     code: "032",
-    name: "UNIONBANK"
+    name: "UNIONBANK",
   },
   {
     code: "033",
-    name: "UBA"
+    name: "UBA",
   },
   {
     code: "215",
-    name: "UNITY"
+    name: "UNITY",
   },
   {
     code: "035",
-    name: "WEMA"
+    name: "WEMA",
   },
-]
+];
 
 const BASEURL = process.env.REACT_APP_APIURL;
 const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
-  const newBank = bankDetailsFromCBN.sort((a,b)=> a.name > b.name? 1 : -1)
-    const inputRefs = Array.from({ length: 6 }).map(() => createRef(null));
-    // const inputRefs = new Array(6).fill(useRef(null));
-    const [ idempotentKey, setIdempotentKey ] = useState("");
-    const [inputValues, setInputValues] = useState(Array(6).fill(''));
-    const [ amount, setAmount ] = useState("");
-    const [ accountNumber, setAccountNumber ] = useState("");
-    const [ bankCode, setBankCode ] = useState("");
-    const [ name, setName ] = useState("");
-    // const [ token, setToken ] = useState("");
-    const [ isVerified, setIsVerified ] = useState(false);
-    const [ isModalOpen, setIsModalOpen ] = useState(false);
-    const userDetails = JSON.parse(localStorage.getItem("userDetails__checkout__app"));
-    
+  const newBank = bankDetailsFromCBN.sort((a, b) => (a.name > b.name ? 1 : -1));
+  const inputRefs = Array.from({ length: 6 }).map(() => createRef(null));
+  // const inputRefs = new Array(6).fill(useRef(null));
+  const [idempotentKey, setIdempotentKey] = useState("");
+  const [inputValues, setInputValues] = useState(Array(6).fill(""));
+  const [amount, setAmount] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [bankCode, setBankCode] = useState("");
+  const [name, setName] = useState("");
+  // const [ token, setToken ] = useState("");
+  const [isVerified, setIsVerified] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const userDetails = JSON.parse(
+    localStorage.getItem("userDetails__checkout__app")
+  );
 
-    useEffect(() => {
-      setIdempotentKey(`${userDetails.user.id}${new Date().getTime()}`);
+  useEffect(() => {
+    setIdempotentKey(`${userDetails.user.id}${new Date().getTime()}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [accountNumber, amount]);
+  }, [accountNumber, amount]);
 
-    const handleInputChange = (index, e) => {
-      const value = e.target.value;
-      const nextIndex = index + 1;
-      if(e.key === "Backspace" && index > 0){
-        e.target.value = ""
-        inputRefs[index - 1].current.value = "";
-        inputRefs[index - 1].current.focus();
-      }
-      if (value.length >= 1 && nextIndex < inputRefs.length) {
-        // Move focus to the next input field
-        // eslint-disable-next-line no-unused-vars
-        let y = nextIndex;
-        inputRefs[index+1].current.focus();
-      }
-      // setToken((prev)=> prev += inputRefs[index].current.value);
-        const newInputValues = [...inputValues];
-        newInputValues[index] = value;
-        setInputValues(newInputValues);
-    };
-    const closeModal = () => {
-      setInputValues(Array(6).fill(''));
-      setIsModalOpen(false);
+  const handleInputChange = (index, e) => {
+    const value = e.target.value;
+    const nextIndex = index + 1;
+    if (e.key === "Backspace" && index > 0) {
+      e.target.value = "";
+      inputRefs[index - 1].current.value = "";
+      inputRefs[index - 1].current.focus();
     }
-
-    const verifyOTP = async () => {
-      const otp = inputValues.join("");
-      setInputValues(Array(6).fill(''));
-      setIsModalOpen(false);
-        setIsVerified(true);
-        if(!accountNumber || !Number(amount) || !bankCode || !otp){
-          setIsVerified(false);
-          toast.error("Please enter the OTP sent to your email", {
-            position: toast.POSITION.TOP_RIGHT
-          });
-          return;
-        }
-        
-        const fundDetails = {
-          amount,
-          bankAccount: accountNumber,
-          currency: "NGN",
-          bank: bankCode,
-          nameOnAccount: name,
-          otp
-        }
-        const accountDetails = await fetch(`${BASEURL}/v1/withdraw/initiate`, {
-          method: "POST",
-          headers: {
-            "authorization": `Bearer ${userDetails.token}`,
-            "idempotentkey": idempotentKey,
-            "Content-Type":"application/json",
-            "Access-Control-Allow-Origin": "*"
-          },
-          body: JSON.stringify(fundDetails)
-        });
-  
-        const result = await accountDetails.json();
-        if(!result.status){
-          setIsVerified(false);
-          toast.error(`Error: ${result.message}`, {
-            position: toast.POSITION.TOP_RIGHT
-          });
-          setName("");
-          return;
-        }
-        setIsVerified(false);
-        setIdempotentKey("");
-        setName("");
-        setAccountNumber("");
-        setAmount("");
-        setBankCode("");
-        if(result.status){
-          toast.success(`${result.message}`, {
-            position: toast.POSITION.TOP_RIGHT
-          });
-          setTimeout(()=>{
-            window.open("/dashboard", "_self");
-          }, 3000);
-          return;
-        }
-        toast.info(`Info: ${result.message}`, {
-          position: toast.POSITION.TOP_RIGHT
-        });
-        return;
-      
+    if (value.length >= 1 && nextIndex < inputRefs.length) {
+      // Move focus to the next input field
+      // eslint-disable-next-line no-unused-vars
+      let y = nextIndex;
+      inputRefs[index + 1].current.focus();
     }
+    // setToken((prev)=> prev += inputRefs[index].current.value);
+    const newInputValues = [...inputValues];
+    newInputValues[index] = value;
+    setInputValues(newInputValues);
+  };
+  const closeModal = () => {
+    setInputValues(Array(6).fill(""));
+    setIsModalOpen(false);
+  };
 
-    const withdrawMoney = async () => {
-      setInputValues(Array(6).fill(''));
-        setIsVerified(true);
-        if(!accountNumber || !Number(amount) || !bankCode){
-          setIsVerified(false);
-          toast.error("Please enter a valid account number, amount and bank", {
-            position: toast.POSITION.TOP_RIGHT
-          });
-          return;
-        }
-        const fundDetails = {
-          amount,
-          bankAccount: accountNumber,
-          currency: "NGN",
-          bank: bankCode,
-        }
-        const generateOTP = await fetch(`${BASEURL}/v1/withdraw/otp`, {
-          method: "POST",
-          headers: {
-            "authorization": `Bearer ${userDetails.token}`,
-            "idempotentkey": idempotentKey,
-            "Content-Type":"application/json",
-            "Access-Control-Allow-Origin": "*"
-          },
-          body: JSON.stringify(fundDetails)
-        });
-  
-        const result = await generateOTP.json();
-        if(!result.status){
-          setIsVerified(false);
-          toast.error(`Error: ${result.message}`, {
-            position: toast.POSITION.TOP_RIGHT
-          });
-          setName("");
-          setIdempotentKey("");
-          return;
-        }
-        setIsVerified(false);
-        setOnRightToggle(false);
-        setIsModalOpen(true);
-        return;
-      
-    }
-
-    const verifyAccount = async () => {
-      if(!idempotentKey){
-        setIdempotentKey(`${userDetails.user.id}${new Date().getTime()}`);
-      }
-      setIsVerified(true);
-      if(!accountNumber || !Number(amount) || !bankCode){
-        setIsVerified(false);
-        toast.error("Please enter a valid account number, amount and bank", {
-          position: toast.POSITION.TOP_RIGHT
-        });
-        return;
-      }
-      const fundDetails = {
-        amount,
-        bankAccount: accountNumber,
-        currency: "NGN",
-        bank: bankCode,
-      }
-      const accountDetails = await fetch(`${BASEURL}/v1/withdraw`, {
-        method: "POST",
-        headers: {
-          "authorization": `Bearer ${userDetails.token}`,
-          "idempotentkey": idempotentKey,
-          "Content-Type":"application/json",
-          "Access-Control-Allow-Origin": "*"
-        },
-        body: JSON.stringify(fundDetails)
-      });
-
-      const result = await accountDetails.json();
-      if(!result.response.status){
-        setIsVerified(false);
-        toast.error(`Error: ${result.response.message}`, {
-          position: toast.POSITION.TOP_RIGHT
-        });
-        return;
-      }
+  const verifyOTP = async () => {
+    const otp = inputValues.join("");
+    setInputValues(Array(6).fill(""));
+    setIsModalOpen(false);
+    setIsVerified(true);
+    if (!accountNumber || !Number(amount) || !bankCode || !otp) {
       setIsVerified(false);
-      if(result.response.status === true) {
-        setName(`${result.response.data.account_name}`);
-      }
+      toast.error("Please enter the OTP sent to your email", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       return;
     }
 
-    const withdrawFromWallet = () => {
-      name ? withdrawMoney() : verifyAccount();
+    const fundDetails = {
+      amount,
+      bankAccount: accountNumber,
+      currency: "NGN",
+      bank: bankCode,
+      nameOnAccount: name,
+      otp,
+    };
+    const accountDetails = await fetch(`${BASEURL}/v1/withdraw/initiate`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${userDetails.token}`,
+        idempotentkey: idempotentKey,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(fundDetails),
+    });
+
+    const result = await accountDetails.json();
+    if (!result.status) {
+      setIsVerified(false);
+      toast.error(`Error: ${result.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setName("");
       return;
     }
+    setIsVerified(false);
+    setIdempotentKey("");
+    setName("");
+    setAccountNumber("");
+    setAmount("");
+    setBankCode("");
+    if (result.status) {
+      toast.success(`${result.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setTimeout(() => {
+        window.open("/dashboard", "_self");
+      }, 3000);
+      return;
+    }
+    toast.info(`Info: ${result.message}`, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+    return;
+  };
+
+  const withdrawMoney = async () => {
+    setInputValues(Array(6).fill(""));
+    setIsVerified(true);
+    if (!accountNumber || !Number(amount) || !bankCode) {
+      setIsVerified(false);
+      toast.error("Please enter a valid account number, amount and bank", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+    const fundDetails = {
+      amount,
+      bankAccount: accountNumber,
+      currency: "NGN",
+      bank: bankCode,
+    };
+    const generateOTP = await fetch(`${BASEURL}/v1/withdraw/otp`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${userDetails.token}`,
+        idempotentkey: idempotentKey,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(fundDetails),
+    });
+
+    const result = await generateOTP.json();
+    if (!result.status) {
+      setIsVerified(false);
+      toast.error(`Error: ${result.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setName("");
+      setIdempotentKey("");
+      return;
+    }
+    setIsVerified(false);
+    setOnRightToggle(false);
+    setIsModalOpen(true);
+    return;
+  };
+
+  const verifyAccount = async () => {
+    if (!idempotentKey) {
+      setIdempotentKey(`${userDetails.user.id}${new Date().getTime()}`);
+    }
+    setIsVerified(true);
+    if (!accountNumber || !Number(amount) || !bankCode) {
+      setIsVerified(false);
+      toast.error("Please enter a valid account number, amount and bank", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+    const fundDetails = {
+      amount,
+      bankAccount: accountNumber,
+      currency: "NGN",
+      bank: bankCode,
+    };
+    const accountDetails = await fetch(`${BASEURL}/v1/withdraw`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${userDetails.token}`,
+        idempotentkey: idempotentKey,
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify(fundDetails),
+    });
+
+    const result = await accountDetails.json();
+    if (!result.response.status) {
+      setIsVerified(false);
+      toast.error(`Error: ${result.response.message}`, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
+    setIsVerified(false);
+    if (result.response.status === true) {
+      setName(`${result.response.data.account_name}`);
+    }
+    return;
+  };
+
+  const withdrawFromWallet = () => {
+    name ? withdrawMoney() : verifyAccount();
+    return;
+  };
   return (
     <div>
-        <div className='checkout__withdrawal__container'>
-            <p className='checkout__withdraw__text'>Withdraw</p>
-            <div className='checkout__withdraw__wrapper'>
-                <input type="text" placeholder="Enter account number..." className='checkout__withdraw' onChange={(e)=>setAccountNumber(e.target.value)} value={accountNumber} />
-                <div className='checkout__withdraw__div'>
-                    <input type="text" placeholder="Enter amount..." className='checkout__withdraw__amount' onChange={(e)=>setAmount(e.target.value)} value={amount} />
-                    <select className='checkout__withdraw__select' onChange={(e)=>setBankCode(e.target.value)} value={bankCode}>
-                      <option value="" className='checkout__withdraw__bank'>BANK</option>
-                        {
-                          (newBank && newBank.map((bank, index) => {
-                            return <option key={++index} value={bank.code}>{`${bank.name}`.toUpperCase()}</option>
-                          }))
-                        }
-                    </select>
-                </div>
+      <div className="checkout__withdrawal__container">
+        <p className="checkout__withdraw__text">Withdraw</p>
+        <div className="checkout__withdraw__wrapper">
+          <input
+            type="text"
+            placeholder="Enter account number..."
+            className="checkout__withdraw"
+            onChange={(e) => setAccountNumber(e.target.value)}
+            value={accountNumber}
+          />
+          <div className="checkout__withdraw__div">
+            <input
+              type="text"
+              placeholder="Enter amount..."
+              className="checkout__withdraw__amount"
+              onChange={(e) => setAmount(e.target.value)}
+              value={amount}
+            />
+            <select
+              className="checkout__withdraw__select"
+              onChange={(e) => setBankCode(e.target.value)}
+              value={bankCode}
+            >
+              <option value="" className="checkout__withdraw__bank">
+                BANK
+              </option>
+              {newBank &&
+                newBank.map((bank, index) => {
+                  return (
+                    <option key={++index} value={bank.code}>
+                      {`${bank.name}`.toUpperCase()}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
 
-                <p className='rightSidebar__verified__details'><span>{isVerified? <ClipLoader color="#fff" loading={true} css={override} size={10} /> : name.toUpperCase()}</span></p>
-                <button type='button' className='checkout__withdraw__button checkout__btn__click' onClick={withdrawFromWallet}>{name? "Withdraw" : "Verify"}</button>
-            </div>
+          <p className="rightSidebar__verified__details">
+            <span>
+              {isVerified ? (
+                <ClipLoader
+                  color="#fff"
+                  loading={true}
+                  css={override}
+                  size={10}
+                />
+              ) : (
+                name.toUpperCase()
+              )}
+            </span>
+          </p>
+          <button
+            type="button"
+            className="checkout__withdraw__button checkout__btn__click"
+            onClick={withdrawFromWallet}
+          >
+            {name ? "Withdraw" : "Verify"}
+          </button>
         </div>
-        <Modal
+      </div>
+      <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
@@ -311,37 +351,43 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
         ariaHideApp={false}
         style={{
           overlay: {
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)'
+            backgroundColor: "rgba(0, 0, 0, 0.8)",
           },
           content: {
             overflow: "scroll",
             objectFit: "center",
             width: "inherit",
-          }
+          },
         }}
-        > 
-          <div>
-            <div className='otp__div__close'>
-              <div className=''>&nbsp;</div>
-              <div className='otp__close' onClick={closeModal}>X</div>
-              {/* X */}
+      >
+        <div>
+          <div className="otp__div__close">
+            <div className="">&nbsp;</div>
+            <div className="otp__close" onClick={closeModal}>
+              X
             </div>
-            <div className="otp__container">
-              <div className='otp__text__div'>
-                <h2>Checkout Transfer</h2>
-                <p>Please enter the <strong>OTP</strong> that was sent to your email address <strong>{userDetails.user.email}</strong>. Your OTP is valid for <strong>10 mins.</strong></p>
-              </div>
-              <div className='otp__input__div'>
+            {/* X */}
+          </div>
+          <div className="otp__container">
+            <div className="otp__text__div">
+              <h2>Checkout Transfer</h2>
+              <p>
+                Please enter the <strong>OTP</strong> that was sent to your
+                email address <strong>{userDetails.user.email}</strong>. Your
+                OTP is valid for <strong>10 mins.</strong>
+              </p>
+            </div>
+            <div className="otp__input__div">
               {inputRefs.map((ref, index) => (
                 <input
-                  style={{fontFamily: "Digital"}}
-                  className='otp__input no-arrows'
-                  placeholder='_'
+                  style={{ fontFamily: "Digital" }}
+                  className="otp__input no-arrows"
+                  placeholder="_"
                   key={index}
                   ref={ref}
                   type="number"
@@ -351,16 +397,15 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
                   }}
                 />
               ))}
-                
-              </div>
-              <div className='otp__btn__div'>
-                <button onClick={verifyOTP}>Validate OTP</button>
-              </div>
+            </div>
+            <div className="otp__btn__div">
+              <button onClick={verifyOTP}>Validate OTP</button>
             </div>
           </div>
-        </Modal>
+        </div>
+      </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Withdraw
+export default Withdraw;

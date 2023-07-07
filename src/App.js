@@ -16,12 +16,12 @@ function App() {
     if (userDetails) {
       setUserAccess(userDetails);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="checkout__dashboard__container__app">
       <ToastContainer />
-    <Routes>
+      <Routes>
         <Route path="/success" element={<Success />}></Route>
         <Route path="/verify" element={<Verification />}></Route>
         <Route
