@@ -59,7 +59,6 @@ function SignupPage() {
       });
 
       const result = await signup.json();
-      console.log("result: ", result);
       if (!result || !result.status) {
         setIsLoading(false);
         toast.error(`Error: ${result ? result.message : "Signup failed"}`, {

@@ -72,7 +72,6 @@ const withdrawalDataFunction = () => {
 const transferData = transferDataFunction();
 const fundingData = fundingDataFunction();
 const withdrawalData = withdrawalDataFunction();
-console.log("details: ", transferData, withdrawalData, fundingData)
 
 const data = {
   labels,

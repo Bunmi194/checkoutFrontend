@@ -35,7 +35,6 @@ const Verification = () => {
         }
       );
       const result = await verify.json();
-      console.log("result: ", result);
       if (result && result.status) {
         setVerifying(false);
         toast.success(`${result.message}`, {

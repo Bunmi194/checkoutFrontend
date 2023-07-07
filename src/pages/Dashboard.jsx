@@ -53,7 +53,6 @@ const Dashboard = ({ setUserAccess }) => {
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("trxref");
     if (ref) {
-      console.log("THISISREF: ", ref);
       verifyTransaction(ref, token);
     }
   }, []);

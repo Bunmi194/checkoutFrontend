@@ -52,7 +52,6 @@ const FundWallet = ({ setActivityCounter, setOnRightToggle }) => {
     })
 
     const response = await fundAccount.json();
-    console.log("response: ", response);
     if(!response || !response.status){
       setIsFunding(false);
       return toast.error(`Error: ${response.message}`, {

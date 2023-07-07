@@ -96,7 +96,6 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
         setIsVerified(false);
         setOnRightToggle(false);
         setIsModalOpen(true);
-        console.log("result: ", result);
         return;
       
     }
@@ -148,7 +147,6 @@ const Transfer = ({ setActivityCounter, setOnRightToggle }) => {
         setName("");
         setAccountNumber("");
         setAmount("");
-        console.log("result: ", result);
         if(result.status){
           toast.success(`${result.message}`, {
             position: toast.POSITION.TOP_RIGHT

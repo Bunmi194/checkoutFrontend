@@ -49,7 +49,6 @@ const Main = ({ dataLoaded, setDataLoaded, onSidebarToggle, setOnSidebarToggle, 
         })
         return;
       }
-      console.log("result", result);
       setTransferTotal(result.transferTotal);
       setFundingTotal(result.fundingTotal);
       setWithdrawTotal(result.withdrawTotal);

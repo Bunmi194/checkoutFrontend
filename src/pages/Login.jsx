@@ -88,7 +88,6 @@ function LoginPage({setUserAccess}) {
     });
 
     const result = await login.json();
-    console.log("result: ", result);
     if(!result || !result.status) {
       setIsLoading(false);
       toast.error(`Error: ${result.message}`, {

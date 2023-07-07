@@ -13,7 +13,6 @@ function App() {
 
   const userDetails = localStorage.getItem("userDetails__checkout__app");
   useEffect(() => {
-    console.log("userDetailsAPP: ", userDetails);
     if (userDetails) {
       setUserAccess(userDetails);
     }

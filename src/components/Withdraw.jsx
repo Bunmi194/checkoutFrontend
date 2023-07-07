@@ -167,7 +167,6 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
         setAccountNumber("");
         setAmount("");
         setBankCode("");
-        console.log("result: ", result);
         if(result.status){
           toast.success(`${result.message}`, {
             position: toast.POSITION.TOP_RIGHT
@@ -224,7 +223,6 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
         setIsVerified(false);
         setOnRightToggle(false);
         setIsModalOpen(true);
-        console.log("result: ", result);
         return;
       
     }
@@ -267,7 +265,6 @@ const Withdraw = ({ setActivityCounter, setOnRightToggle }) => {
         return;
       }
       setIsVerified(false);
-      console.log("result: ", result);
       if(result.response.status === true) {
         setName(`${result.response.data.account_name}`);
       }
